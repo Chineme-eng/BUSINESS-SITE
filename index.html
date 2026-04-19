@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,462 +11,719 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#00e5a0">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"LocalBusiness","name":"LocalSite Co.","description":"Web design for local businesses. Fast delivery, mobile-first, conversion-focused.","url":"https://localsiteco.com","telephone":"+15555555555","email":"hello@localsiteco.com","priceRange":"$$","areaServed":"United States","serviceType":"Web Design"}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"LocalSite Co.","description":"Web design for local businesses. Fast delivery, mobile-first, conversion-focused.","url":"https://localsiteco.com","telephone":"+15555555555","email":"hello@localsiteco.com","priceRange":"$$","areaServed":"United States"}
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
-:root{--bg:#09090e;--bg2:#0f0f17;--bg3:#141420;--card:rgba(23,23,34,0.85);--border:rgba(255,255,255,0.07);--accent:#00e5a0;--accent2:#00b87a;--accentl:rgba(0,229,160,0.12);--text:#ededf8;--muted:#8888a8;--white:#ffffff;--r:14px;--fh:'Syne',sans-serif;--fb:'DM Sans',sans-serif}
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* ═══════════════════════════════════════
+   THEME TOKENS
+═══════════════════════════════════════ */
+:root {
+  --accent:  #00e5a0;
+  --accent2: #00b87a;
+  --accentl: rgba(0,229,160,0.12);
+  --r: 14px;
+  --fh: 'Syne', sans-serif;
+  --fb: 'DM Sans', sans-serif;
+}
+[data-theme="dark"] {
+  --bg:      #09090e;
+  --bg2:     #0f0f17;
+  --bg3:     #141420;
+  --card-bg: rgba(23,23,34,0.9);
+  --border:  rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.14);
+  --text:    #ededf8;
+  --muted:   #9494b4;
+  --white:   #ffffff;
+  --nav-bg:  rgba(9,9,14,0.88);
+  --nav-scrolled: rgba(9,9,14,0.98);
+  --input-bg: rgba(255,255,255,0.05);
+  --shadow:  0 24px 80px rgba(0,0,0,0.5);
+  --orb1:    rgba(0,229,160,0.11);
+  --orb2:    rgba(0,150,255,0.07);
+  --grid-op: 0.025;
+}
+[data-theme="light"] {
+  --bg:      #f8f8fc;
+  --bg2:     #f0f0f8;
+  --bg3:     #e8e8f4;
+  --card-bg: rgba(255,255,255,0.95);
+  --border:  rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.14);
+  --text:    #1a1a2e;
+  --muted:   #5a5a7a;
+  --white:   #1a1a2e;
+  --nav-bg:  rgba(248,248,252,0.88);
+  --nav-scrolled: rgba(248,248,252,0.98);
+  --input-bg: rgba(0,0,0,0.04);
+  --shadow:  0 24px 80px rgba(0,0,0,0.1);
+  --orb1:    rgba(0,229,160,0.15);
+  --orb2:    rgba(0,150,255,0.10);
+  --grid-op: 0.06;
+}
+
+/* ═══════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--fb);line-height:1.6;font-size:16px;overflow-x:hidden}
-::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);line-height:1.6;font-size:16px;overflow-x:hidden;transition:background 0.35s,color 0.35s}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(9,9,14,0.82);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background 0.3s}
-nav.scrolled{background:rgba(9,9,14,0.97)}
-.nav-logo{font-family:var(--fh);font-weight:800;font-size:1.1rem;color:var(--white);letter-spacing:-0.5px;white-space:nowrap;text-decoration:none}
+/* ═══════════════════════════════════════
+   FOCUS & SKIP LINK
+═══════════════════════════════════════ */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.skip-link{position:absolute;top:-100px;left:16px;z-index:9999;background:var(--accent);color:#000;font-weight:700;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;transition:top 0.2s}
+.skip-link:focus{top:16px}
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background 0.3s}
+nav.scrolled{background:var(--nav-scrolled)}
+.nav-logo{font-family:var(--fh);font-weight:800;font-size:1.1rem;color:var(--white);letter-spacing:-0.5px;white-space:nowrap;text-decoration:none;flex-shrink:0}
 .nav-logo span{color:var(--accent)}
-.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{font-size:0.84rem;color:var(--muted);transition:color 0.2s;padding:4px 0;border-bottom:2px solid transparent;text-decoration:none}
-.nav-links a:hover,.nav-links a.active{color:var(--accent);border-color:var(--accent)}
-.nav-cta{background:var(--accent);color:#000;font-family:var(--fb);font-weight:600;font-size:0.84rem;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:all 0.2s;display:inline-block;text-decoration:none}
+.nav-center{display:flex;gap:26px;list-style:none}
+.nav-center a{font-size:0.84rem;color:var(--muted);transition:color 0.2s;padding:4px 0;border-bottom:2px solid transparent;text-decoration:none}
+.nav-center a:hover,.nav-center a.active{color:var(--accent);border-color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:10px}
+/* Theme toggle */
+.theme-toggle{width:38px;height:38px;border-radius:9px;border:1px solid var(--border2);background:var(--input-bg);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all 0.2s;flex-shrink:0;color:var(--text)}
+.theme-toggle:hover{border-color:var(--accent);background:var(--accentl)}
+.nav-cta{background:var(--accent);color:#000;font-family:var(--fb);font-weight:600;font-size:0.84rem;border:none;padding:10px 18px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:all 0.2s;display:inline-block;text-decoration:none;flex-shrink:0}
 .nav-cta:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 4px 20px rgba(0,229,160,0.3)}
-@media(max-width:760px){.nav-links{display:none}}
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:1px solid var(--border);border-radius:8px;background:var(--input-bg);transition:all 0.2s}
+.hamburger span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:all 0.3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+/* Mobile menu drawer */
+.mobile-menu{position:fixed;top:0;left:0;right:0;bottom:0;z-index:250;background:var(--bg);transform:translateX(100%);transition:transform 0.35s cubic-bezier(.77,0,.18,1);display:flex;flex-direction:column;padding:90px 32px 40px;gap:8px}
+.mobile-menu.open{transform:none}
+.mobile-menu a{font-family:var(--fh);font-size:1.6rem;font-weight:800;color:var(--text);text-decoration:none;padding:12px 0;border-bottom:1px solid var(--border);transition:color 0.2s}
+.mobile-menu a:hover{color:var(--accent)}
+.mobile-menu .mm-cta{margin-top:24px;background:var(--accent);color:#000;font-family:var(--fb);font-weight:700;font-size:1rem;padding:16px 24px;border-radius:12px;text-align:center;border:none;border-bottom:none}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:130px 24px 90px;position:relative;overflow:hidden}
+@media(max-width:820px){.nav-center{display:none}}
+@media(max-width:600px){.nav-cta{display:none}.hamburger{display:flex}}
+@media(min-width:601px){.hamburger{display:none}}
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:110px 24px 70px;position:relative;overflow:hidden}
 .hero-orb{position:absolute;pointer-events:none;border-radius:50%}
-.hero-orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(0,229,160,0.10) 0%,transparent 65%);top:-200px;left:50%;transform:translateX(-50%)}
-.hero-orb-2{width:400px;height:400px;background:radial-gradient(circle,rgba(0,180,255,0.07) 0%,transparent 65%);bottom:0;right:-100px}
-.hero-grid-bg{position:absolute;inset:0;opacity:0.025;background-image:linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px);background-size:48px 48px}
-.hero-inner{position:relative;z-index:1;max-width:820px;margin:0 auto}
-.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.22);color:var(--accent);font-size:0.77rem;font-weight:500;padding:6px 16px;border-radius:100px;margin-bottom:30px;animation:fadeUp 0.5s ease both}
-.badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 2s infinite;flex-shrink:0}
+.hero-orb-1{width:800px;height:800px;background:radial-gradient(circle,var(--orb1) 0%,transparent 65%);top:-300px;left:50%;transform:translateX(-50%)}
+.hero-orb-2{width:500px;height:500px;background:radial-gradient(circle,var(--orb2) 0%,transparent 65%);bottom:-100px;right:-150px}
+.hero-grid-bg{position:absolute;inset:0;opacity:var(--grid-op);background-image:linear-gradient(rgba(128,128,160,1) 1px,transparent 1px),linear-gradient(90deg,rgba(128,128,160,1) 1px,transparent 1px);background-size:48px 48px}
+.hero-inner{position:relative;z-index:1;max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media(max-width:780px){.hero-inner{grid-template-columns:1fr;text-align:center;gap:40px}}
+.hero-left{}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--accentl);border:1px solid rgba(0,229,160,0.25);color:var(--accent);font-size:0.78rem;font-weight:600;padding:6px 14px;border-radius:100px;margin-bottom:22px}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 2s infinite;flex-shrink:0}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
-.hero h1{font-family:var(--fh);font-size:clamp(2.6rem,7.5vw,5rem);font-weight:800;line-height:1.05;letter-spacing:-2.5px;color:var(--white);margin-bottom:24px;animation:fadeUp 0.6s 0.1s ease both}
+.hero h1{font-family:var(--fh);font-size:clamp(2.4rem,5.5vw,3.8rem);font-weight:800;line-height:1.08;letter-spacing:-1.5px;color:var(--white);margin-bottom:18px}
+@media(max-width:480px){.hero h1{font-size:2.2rem;letter-spacing:-1px}}
 .hero h1 em{color:var(--accent);font-style:normal}
-.hero h1 .line2{display:block;color:var(--muted);font-weight:700;font-size:0.68em;letter-spacing:-1px;margin-top:8px}
-.hero-sub{font-size:clamp(1rem,2.5vw,1.2rem);color:var(--muted);max-width:540px;margin:0 auto 38px;font-weight:400;line-height:1.75;animation:fadeUp 0.6s 0.2s ease both}
-.hero-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;animation:fadeUp 0.6s 0.3s ease both}
-.btn-primary{background:var(--accent);color:#000;font-family:var(--fb);font-weight:700;font-size:1rem;padding:16px 34px;border-radius:10px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:0 0 40px rgba(0,229,160,0.28);transition:all 0.2s;text-decoration:none}
+.hero-sub{font-size:1rem;color:var(--muted);margin-bottom:30px;font-weight:400;line-height:1.7;max-width:440px}
+@media(max-width:780px){.hero-sub{margin-left:auto;margin-right:auto}}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+@media(max-width:780px){.hero-actions{justify-content:center}}
+@media(max-width:400px){.hero-actions{flex-direction:column}.hero-actions a{text-align:center}}
+.btn-primary{background:var(--accent);color:#000;font-family:var(--fb);font-weight:700;font-size:1rem;padding:15px 28px;border-radius:10px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:0 0 40px rgba(0,229,160,0.25);transition:all 0.2s;text-decoration:none;white-space:nowrap}
 .btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 0 60px rgba(0,229,160,0.4)}
-.btn-ghost{background:rgba(255,255,255,0.04);color:var(--text);font-family:var(--fb);font-weight:500;font-size:1rem;padding:15px 28px;border-radius:10px;border:1px solid var(--border);cursor:pointer;display:inline-block;transition:all 0.2s;text-decoration:none}
-.btn-ghost:hover{border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.07);transform:translateY(-2px)}
-.hero-note{margin-top:22px;font-size:0.82rem;color:var(--muted);animation:fadeUp 0.6s 0.4s ease both;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 16px}
-.hero-note span{color:var(--accent)}
-.scroll-ind{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;animation:fadeUp 0.6s 1s ease both;opacity:0.4}
-.scroll-ind span{font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
-.scroll-line{width:1px;height:40px;background:linear-gradient(var(--accent),transparent);animation:sp 2s infinite}
-@keyframes sp{0%,100%{opacity:0.3}50%{opacity:1}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.btn-ghost{background:var(--input-bg);color:var(--text);font-family:var(--fb);font-weight:500;font-size:1rem;padding:14px 24px;border-radius:10px;border:1px solid var(--border2);cursor:pointer;display:inline-block;transition:all 0.2s;text-decoration:none;white-space:nowrap}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.hero-note{margin-top:20px;font-size:0.8rem;color:var(--muted);display:flex;align-items:center;flex-wrap:wrap;gap:4px 14px}
+@media(max-width:780px){.hero-note{justify-content:center}}
+.hero-note span{color:var(--accent);font-weight:500}
 
-/* PROOF BAR */
-.proof-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 24px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 40px}
-.proof-item{display:flex;align-items:center;gap:9px;font-size:0.84rem;color:var(--muted);white-space:nowrap}
+/* Hero visual: floating phone mockup */
+.hero-right{position:relative;display:flex;justify-content:center;align-items:center}
+@media(max-width:780px){.hero-right{order:-1}}
+.phone-wrap{position:relative;width:220px;height:420px}
+@media(max-width:780px){.phone-wrap{width:180px;height:340px}}
+.phone-frame{width:100%;height:100%;border-radius:36px;border:2px solid var(--border2);background:var(--bg2);overflow:hidden;position:relative;box-shadow:0 40px 100px rgba(0,0,0,0.4),0 0 0 1px var(--border)}
+.phone-notch{width:80px;height:24px;background:var(--bg);border-radius:0 0 16px 16px;margin:0 auto;position:relative;z-index:2}
+.phone-screen{padding:12px 10px;display:flex;flex-direction:column;gap:8px}
+.ps-nav{background:linear-gradient(90deg,#0a0820,#1a1060);border-radius:8px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between}
+.ps-logo{font-size:0.65rem;color:#a78bfa;font-weight:700;font-family:var(--fh)}
+.ps-btn{background:#7c3aed;color:#fff;font-size:0.5rem;padding:3px 8px;border-radius:4px;font-weight:700}
+.ps-hero{background:linear-gradient(135deg,#0d0820,#1e1045);border-radius:8px;padding:14px 10px;text-align:center}
+.ps-h1{font-size:0.75rem;color:#fff;font-weight:800;font-family:var(--fh);letter-spacing:-0.5px;margin-bottom:4px}
+.ps-tag{font-size:0.5rem;color:#a78bfa;margin-bottom:10px}
+.ps-cta{display:inline-block;background:#7c3aed;color:#fff;font-size:0.52rem;padding:5px 12px;border-radius:5px;font-weight:700}
+.ps-services{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.ps-svc{background:rgba(124,58,237,0.14);border:1px solid rgba(124,58,237,0.25);border-radius:6px;padding:6px 4px;text-align:center}
+.ps-svc-n{font-size:0.46rem;color:#c4b5fd;font-weight:600}
+.ps-svc-p{font-size:0.58rem;color:#fff;font-weight:700;margin-top:2px}
+.ps-review{background:rgba(0,229,160,0.07);border:1px solid rgba(0,229,160,0.18);border-radius:7px;padding:7px 8px;text-align:center}
+.ps-stars{color:#f59e0b;font-size:0.5rem;letter-spacing:1px;margin-bottom:2px}
+.ps-rev-text{font-size:0.48rem;color:#9494b4;font-style:italic}
+/* Floating badges */
+.float-badge{position:absolute;background:var(--card-bg);border:1px solid var(--border2);border-radius:10px;padding:8px 12px;box-shadow:var(--shadow);white-space:nowrap;backdrop-filter:blur(12px)}
+.fb-left{left:-60px;top:80px;animation:float1 4s ease-in-out infinite}
+.fb-right{right:-50px;bottom:100px;animation:float2 4s ease-in-out infinite 1s}
+@media(max-width:780px){.fb-left{left:-30px}.fb-right{right:-24px}}
+@media(max-width:400px){.float-badge{display:none}}
+.fb-icon{font-size:1rem;margin-bottom:2px}
+.fb-label{font-size:0.62rem;font-weight:600;color:var(--white)}
+.fb-val{font-size:0.56rem;color:var(--muted)}
+@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.phone-glow{position:absolute;width:160%;height:160%;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(ellipse,var(--orb1) 0%,transparent 60%);pointer-events:none;z-index:-1}
+
+/* ═══════════════════════════════════════
+   STAT COUNTER STRIP
+═══════════════════════════════════════ */
+.stats-strip{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px 24px}
+.stats-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+@media(max-width:600px){.stats-inner{grid-template-columns:repeat(2,1fr)}}
+.stat-item{}
+.stat-num{font-family:var(--fh);font-size:2rem;font-weight:800;color:var(--accent);line-height:1;display:block}
+@media(max-width:480px){.stat-num{font-size:1.6rem}}
+.stat-label{font-size:0.8rem;color:var(--muted);margin-top:4px;display:block}
+
+/* ═══════════════════════════════════════
+   PROOF BAR
+═══════════════════════════════════════ */
+.proof-bar{background:var(--bg);padding:14px 24px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 32px;border-bottom:1px solid var(--border)}
+.proof-item{display:flex;align-items:center;gap:8px;font-size:0.83rem;color:var(--muted);white-space:nowrap}
 .proof-item strong{color:var(--text);font-weight:500}
-.proof-sep{color:var(--border);font-size:1.2rem}
+.proof-sep{color:var(--border2);font-size:1rem}
 @media(max-width:600px){.proof-sep{display:none}}
 
-/* SECTIONS */
-section{padding:96px 24px}
+/* ═══════════════════════════════════════
+   SECTIONS
+═══════════════════════════════════════ */
+section{padding:84px 24px}
+@media(max-width:600px){section{padding:64px 20px}}
 .container{max-width:1100px;margin:0 auto}
 .section-label{font-size:0.75rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-.section-title{font-family:var(--fh);font-size:clamp(1.8rem,4vw,3rem);font-weight:800;letter-spacing:-1.5px;line-height:1.1;color:var(--white);margin-bottom:16px}
-.section-sub{color:var(--muted);font-size:1rem;max-width:500px;font-weight:400;line-height:1.75;margin-bottom:56px}
+.section-title{font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-1px;line-height:1.1;color:var(--white);margin-bottom:14px}
+.section-sub{color:var(--muted);font-size:1rem;max-width:500px;font-weight:400;line-height:1.75;margin-bottom:52px}
+.sec-alt{background:var(--bg2)}
 
-/* VALUE */
-.value-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
-.value-card{background:linear-gradient(145deg,rgba(23,23,34,0.9),rgba(18,18,28,0.6));border:1px solid var(--border);border-radius:var(--r);padding:34px 28px;position:relative;overflow:hidden;transition:border-color 0.25s,transform 0.25s}
-.value-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at top left,rgba(0,229,160,0.05),transparent 60%);opacity:0;transition:opacity 0.3s}
-.value-card:hover{border-color:rgba(0,229,160,0.28);transform:translateY(-5px)}
-.value-card:hover::after{opacity:1}
-.vi{width:46px;height:46px;border-radius:12px;background:var(--accentl);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:20px}
-.value-card h3{font-family:var(--fh);font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:10px}
+/* ═══════════════════════════════════════
+   VALUE CARDS
+═══════════════════════════════════════ */
+.value-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.value-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r);padding:30px 26px;position:relative;overflow:hidden;transition:border-color 0.25s,transform 0.25s,box-shadow 0.25s}
+.value-card:hover{border-color:rgba(0,229,160,0.3);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,229,160,0.08)}
+.vi{width:44px;height:44px;border-radius:11px;background:var(--accentl);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:18px}
+.value-card h3{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--white);margin-bottom:9px}
 .value-card p{color:var(--muted);font-size:0.9rem;line-height:1.7}
 
-/* SERVICES */
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
-.svc-card{background:linear-gradient(145deg,rgba(23,23,34,0.9),rgba(15,15,23,0.8));border:1px solid var(--border);border-radius:var(--r);padding:36px 28px;position:relative;overflow:hidden;transition:all 0.25s}
+/* ═══════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════ */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.svc-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r);padding:32px 26px;position:relative;overflow:hidden;transition:all 0.25s}
 .svc-bar{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent);transform:scaleX(0);transform-origin:left;transition:transform 0.35s}
-.svc-card:hover{border-color:rgba(0,229,160,0.22);transform:translateY(-5px)}
+.svc-card:hover{border-color:rgba(0,229,160,0.25);transform:translateY(-4px)}
 .svc-card:hover .svc-bar{transform:scaleX(1)}
-.svc-num{font-family:var(--fh);font-size:2.8rem;font-weight:800;color:rgba(0,229,160,0.1);line-height:1;margin-bottom:14px}
-.svc-card h3{font-family:var(--fh);font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:10px}
-.svc-card p{color:var(--muted);font-size:0.9rem;line-height:1.7;margin-bottom:18px}
-.svc-tag{display:inline-block;background:rgba(0,229,160,0.07);border:1px solid rgba(0,229,160,0.18);color:var(--accent);font-size:0.75rem;padding:3px 12px;border-radius:100px}
+.svc-num{font-family:var(--fh);font-size:2.4rem;font-weight:800;color:rgba(0,229,160,0.12);line-height:1;margin-bottom:12px}
+.svc-card h3{font-family:var(--fh);font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:9px}
+.svc-card p{color:var(--muted);font-size:0.9rem;line-height:1.7;margin-bottom:16px}
+.svc-tag{display:inline-block;background:var(--accentl);border:1px solid rgba(0,229,160,0.2);color:var(--accent);font-size:0.75rem;padding:3px 11px;border-radius:100px;font-weight:500}
 
-/* DEMOS */
-.demos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
-.demo-card{background:rgba(23,23,34,0.8);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:transform 0.25s,border-color 0.25s}
-.demo-card:hover{transform:translateY(-7px);border-color:rgba(0,229,160,0.28)}
-.demo-preview{height:200px;position:relative;display:flex;align-items:center;justify-content:center;font-size:3.8rem;cursor:pointer;overflow:hidden;user-select:none}
+/* ═══════════════════════════════════════
+   DEMO CAROUSEL — 8 examples
+═══════════════════════════════════════ */
+.demos-section{}
+.carousel-wrap{position:relative;overflow:hidden;margin:0 -24px}
+@media(max-width:600px){.carousel-wrap{margin:0 -20px}}
+.carousel-track{display:flex;gap:20px;padding:0 24px 20px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.carousel-track::-webkit-scrollbar{display:none}
+.demo-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;flex:0 0 300px;scroll-snap-align:start;transition:transform 0.25s,border-color 0.25s}
+@media(max-width:480px){.demo-card{flex:0 0 270px}}
+.demo-card:hover{transform:translateY(-5px);border-color:rgba(0,229,160,0.28)}
+/* tap anywhere on the card = open modal (mobile friendly) */
+.demo-card{cursor:pointer}
+.demo-preview{height:190px;position:relative;display:flex;align-items:center;justify-content:center;font-size:3.5rem;overflow:hidden;user-select:none}
 .demo-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;transition:background 0.3s}
-.demo-card:hover .demo-overlay{background:rgba(0,0,0,0.5)}
-.demo-overlay-btn{background:var(--accent);color:#000;font-family:var(--fb);font-weight:700;font-size:0.82rem;padding:10px 22px;border-radius:8px;border:none;cursor:pointer;opacity:0;transform:translateY(8px);transition:all 0.3s;white-space:nowrap}
+.demo-card:hover .demo-overlay{background:rgba(0,0,0,0.45)}
+.demo-overlay-btn{background:var(--accent);color:#000;font-family:var(--fb);font-weight:700;font-size:0.82rem;padding:9px 20px;border-radius:8px;border:none;cursor:pointer;transform:translateY(8px);transition:all 0.3s;white-space:nowrap;opacity:0;pointer-events:none}
 .demo-card:hover .demo-overlay-btn{opacity:1;transform:none}
-.demo-stamp{position:absolute;top:14px;right:14px;background:rgba(0,229,160,0.12);border:1px solid rgba(0,229,160,0.28);color:var(--accent);font-size:0.6rem;font-weight:700;letter-spacing:2px;padding:4px 10px;border-radius:100px}
-.db{background:linear-gradient(135deg,#120a24,#2d1b69 55%,#0d0d1a)}
-.dr{background:linear-gradient(135deg,#1a0808,#4d1414 55%,#160606)}
-.dc{background:linear-gradient(135deg,#06141a,#0d3d47 55%,#081214)}
-.ds{background:linear-gradient(135deg,#1a0a18,#4a1040 55%,#150810)}
-.demo-body{padding:22px}
-.demo-body h3{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--white);margin-bottom:7px}
-.demo-body p{color:var(--muted);font-size:0.83rem;line-height:1.55;margin-bottom:13px}
-.demo-tags{display:flex;flex-wrap:wrap;gap:6px}
-.demo-tag{background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--muted);font-size:0.7rem;padding:3px 10px;border-radius:100px}
+/* Always show on touch devices */
+@media(hover:none){.demo-overlay{background:rgba(0,0,0,0.25)}.demo-overlay-btn{opacity:1;transform:none}}
+.demo-stamp{position:absolute;top:12px;right:12px;background:rgba(0,229,160,0.15);border:1px solid rgba(0,229,160,0.3);color:var(--accent);font-size:0.6rem;font-weight:700;letter-spacing:2px;padding:3px 9px;border-radius:100px}
+.demo-body{padding:18px 20px}
+.demo-body h3{font-family:var(--fh);font-size:0.97rem;font-weight:700;color:var(--white);margin-bottom:6px}
+.demo-body p{color:var(--muted);font-size:0.83rem;line-height:1.55;margin-bottom:12px}
+.demo-tags{display:flex;flex-wrap:wrap;gap:5px}
+.demo-tag{background:var(--input-bg);border:1px solid var(--border);color:var(--muted);font-size:0.7rem;padding:3px 9px;border-radius:100px}
+/* demo preview gradients */
+.dp-barber{background:linear-gradient(135deg,#120a24,#2d1b69 55%,#0d0d1a)}
+.dp-resto {background:linear-gradient(135deg,#1a0808,#4d1414 55%,#160606)}
+.dp-clean {background:linear-gradient(135deg,#06141a,#0d3d47 55%,#081214)}
+.dp-salon {background:linear-gradient(135deg,#1a0a18,#4a1040 55%,#150810)}
+.dp-auto  {background:linear-gradient(135deg,#0a0e18,#142040 55%,#080c14)}
+.dp-gym   {background:linear-gradient(135deg,#140808,#3d1414 55%,#100606)}
+.dp-nail  {background:linear-gradient(135deg,#1a0818,#4a1535 55%,#14081a)}
+.dp-contra{background:linear-gradient(135deg,#100e08,#352c10 55%,#0e0c06)}
+/* Carousel dots */
+.carousel-dots{display:flex;justify-content:center;gap:6px;margin-top:16px}
+.cdot{width:7px;height:7px;border-radius:50%;background:var(--border2);cursor:pointer;transition:all 0.25s;border:none;padding:0}
+.cdot.active{background:var(--accent);width:22px;border-radius:4px}
 
-/* MODAL */
-.modal-bg{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.82);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.3s}
-.modal-bg.open{opacity:1;pointer-events:all}
-.modal{background:var(--bg3);border:1px solid var(--border);border-radius:20px;width:100%;max-width:800px;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;transform:scale(0.94) translateY(20px);transition:transform 0.35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 40px 120px rgba(0,0,0,0.7)}
-.modal-bg.open .modal{transform:none}
-.modal-header{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-bottom:1px solid var(--border)}
-.modal-header h3{font-family:var(--fh);font-size:1.05rem;font-weight:700;color:var(--white)}
-.modal-close{background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--muted);width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
-.modal-close:hover{background:rgba(255,80,80,0.15);border-color:rgba(255,80,80,0.3);color:#ff5a5a}
-.modal-body{overflow-y:auto;padding:28px;flex:1}
-.mock-browser{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden}
-.mock-bar{background:rgba(255,255,255,0.04);padding:11px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
-.mock-dots{display:flex;gap:6px}
-.mock-dot{width:11px;height:11px;border-radius:50%}
-.mock-dot-r{background:#ff5f57}.mock-dot-y{background:#febc2e}.mock-dot-g{background:#28c840}
-.mock-url{flex:1;background:rgba(255,255,255,0.06);border-radius:6px;padding:5px 12px;font-size:0.73rem;color:var(--muted)}
-.mock-content{padding:24px;min-height:380px}
-
-/* Mock site styles */
-.m-hero{border-radius:10px;padding:30px 20px;text-align:center;margin-bottom:16px}
-.m-logo{font-family:var(--fh);font-size:1.5rem;font-weight:800}
-.m-sub{font-size:0.78rem;margin-top:4px}
-.m-btn{display:inline-block;color:#fff;padding:9px 22px;border-radius:7px;font-weight:700;font-size:0.82rem;margin-top:14px}
-.m-row{display:grid;gap:10px;margin-bottom:14px}
-.m-card{border-radius:8px;padding:12px;border:1px solid rgba(255,255,255,0.08)}
-.m-card-name{font-size:0.76rem;font-weight:600}
-.m-card-price{font-size:0.95rem;font-weight:700;margin-top:3px;color:#fff}
-.m-card-desc{font-size:0.75rem;color:#777;margin-top:2px}
-.m-footer-bar{border-radius:8px;padding:11px;text-align:center;font-size:0.72rem;margin-top:4px}
-
-/* BEFORE/AFTER */
-.ba-wrap{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:900px;margin:0 auto}
-@media(max-width:680px){.ba-wrap{grid-template-columns:1fr}}
+/* ═══════════════════════════════════════
+   BEFORE / AFTER
+═══════════════════════════════════════ */
+.ba-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:860px;margin:0 auto}
+@media(max-width:640px){.ba-wrap{grid-template-columns:1fr}}
 .ba-card{border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
-.ba-label{padding:12px 20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px;display:flex;align-items:center;gap:8px}
-.ba-bad .ba-label{background:rgba(255,90,90,0.1);color:#ff5a5a;border-bottom:1px solid rgba(255,90,90,0.15)}
+.ba-label{padding:11px 18px;font-size:0.8rem;font-weight:600;display:flex;align-items:center;gap:8px}
+.ba-bad .ba-label{background:rgba(255,90,90,0.1);color:#ff6b6b;border-bottom:1px solid rgba(255,90,90,0.15)}
 .ba-good .ba-label{background:rgba(0,229,160,0.08);color:var(--accent);border-bottom:1px solid rgba(0,229,160,0.15)}
-.ba-screen{background:var(--bg2);padding:22px 18px;min-height:260px}
-/* bad */
-.bad-nav{background:#eee;padding:8px 10px;border-radius:4px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
-.bad-nav span{font-size:0.7rem;color:#444;font-weight:700}
-.bad-nav div a{font-size:0.6rem;color:#00e;text-decoration:underline;margin-left:6px}
-.bad-hero{background:#e0e0e0;padding:14px;border-radius:4px;margin-bottom:10px;text-align:center}
-.bad-hero h2{font-size:0.82rem;color:#333;font-weight:400;margin-bottom:5px}
-.bad-hero p{font-size:0.63rem;color:#777;line-height:1.4}
-.bad-cols{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px}
-.bad-col{background:#f5f5f5;border:1px solid #ddd;padding:9px;border-radius:3px}
-.bad-col p{font-size:0.61rem;color:#888;line-height:1.4}
-.bad-footer{font-size:0.58rem;color:#aaa;line-height:1.5}
-/* good */
-.good-nav{background:linear-gradient(90deg,#0a0820,#12102a);padding:8px 12px;border-radius:6px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
-.good-nav-logo{font-size:0.78rem;color:#a78bfa;font-weight:700}
-.good-nav-btn{background:#7c3aed;color:#fff;font-size:0.6rem;padding:4px 10px;border-radius:4px;font-weight:700}
-.good-hero{background:linear-gradient(135deg,#0d0820,#1e1045);padding:18px 14px;border-radius:6px;margin-bottom:10px;text-align:center}
-.good-hero h2{font-size:0.95rem;color:#fff;font-weight:800;margin-bottom:5px;letter-spacing:-0.5px}
-.good-hero p{font-size:0.67rem;color:#a78bfa;margin-bottom:10px}
-.good-hero .g-btn{display:inline-block;background:#7c3aed;color:#fff;font-size:0.64rem;padding:6px 14px;border-radius:5px;font-weight:700}
-.good-svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.good-svc{background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.25);border-radius:6px;padding:7px;text-align:center}
-.good-svc-n{font-size:0.6rem;color:#c4b5fd;font-weight:600}
-.good-svc-p{font-size:0.72rem;color:#fff;font-weight:700;margin-top:2px}
+.ba-screen{background:var(--bg2);padding:20px 16px;min-height:240px}
+.bad-nav{background:#e8e8e8;padding:7px 9px;border-radius:4px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center}
+.bad-nav span{font-size:0.68rem;color:#444;font-weight:700}
+.bad-nav div a{font-size:0.58rem;color:#00e;text-decoration:underline;margin-left:5px}
+.bad-hero{background:#ddd;padding:12px;border-radius:4px;margin-bottom:9px;text-align:center}
+.bad-hero h2{font-size:0.78rem;color:#333;font-weight:400;margin-bottom:4px}
+.bad-hero p{font-size:0.61rem;color:#777;line-height:1.4}
+.bad-cols{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px}
+.bad-col{background:#f0f0f0;border:1px solid #ddd;padding:8px;border-radius:3px}
+.bad-col p{font-size:0.6rem;color:#888;line-height:1.4}
+.bad-footer{font-size:0.56rem;color:#aaa;line-height:1.5}
+.good-nav{background:linear-gradient(90deg,#0a0820,#12102a);padding:7px 11px;border-radius:6px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center}
+.good-nav-logo{font-size:0.75rem;color:#a78bfa;font-weight:700}
+.good-nav-btn{background:#7c3aed;color:#fff;font-size:0.58rem;padding:3px 9px;border-radius:4px;font-weight:700}
+.good-hero-mock{background:linear-gradient(135deg,#0d0820,#1e1045);padding:16px 12px;border-radius:6px;margin-bottom:9px;text-align:center}
+.good-hero-mock h2{font-size:0.9rem;color:#fff;font-weight:800;margin-bottom:4px;letter-spacing:-0.3px}
+.good-hero-mock p{font-size:0.64rem;color:#a78bfa;margin-bottom:9px}
+.good-hero-mock .g-btn{display:inline-block;background:#7c3aed;color:#fff;font-size:0.62rem;padding:5px 13px;border-radius:5px;font-weight:700}
+.good-svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.good-svc{background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.25);border-radius:5px;padding:6px;text-align:center}
+.good-svc-n{font-size:0.58rem;color:#c4b5fd;font-weight:600}
+.good-svc-p{font-size:0.68rem;color:#fff;font-weight:700;margin-top:2px}
 
-/* PROCESS */
-.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-@media(min-width:800px){.process-steps{grid-template-columns:repeat(3,1fr)}}
-.process-step{padding:34px 28px;border:1px solid transparent;border-radius:var(--r);transition:border-color 0.25s,background 0.25s}
-.process-step:hover{border-color:var(--border);background:rgba(23,23,34,0.6)}
-.step-num-wrap{display:flex;align-items:center;gap:12px;margin-bottom:18px}
-.step-num{font-family:var(--fh);font-size:2.5rem;font-weight:800;color:rgba(0,229,160,0.2);line-height:1}
-.step-arrow{font-size:1.2rem;color:rgba(0,229,160,0.2);margin-left:auto}
+/* ═══════════════════════════════════════
+   PROCESS
+═══════════════════════════════════════ */
+.process-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+@media(max-width:700px){.process-steps{grid-template-columns:1fr;gap:0}}
+.process-step{padding:32px 26px;border:1px solid transparent;border-radius:var(--r);transition:all 0.25s;position:relative}
+.process-step:hover{border-color:var(--border);background:var(--card-bg)}
+@media(max-width:700px){
+  .process-step{padding:24px 0;border-bottom:1px solid var(--border);border-radius:0}
+  .process-step:last-child{border-bottom:none}
+}
+.step-num-wrap{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.step-num{font-family:var(--fh);font-size:2.4rem;font-weight:800;color:rgba(0,229,160,0.2);line-height:1}
+.step-arrow{font-size:1.1rem;color:rgba(0,229,160,0.2);margin-left:auto}
 .process-step:last-child .step-arrow{display:none}
-.process-step h3{font-family:var(--fh);font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:10px}
-.process-step p{color:var(--muted);font-size:0.87rem;line-height:1.65}
-.step-time{margin-top:16px;display:inline-flex;align-items:center;gap:6px;background:rgba(0,229,160,0.07);border:1px solid rgba(0,229,160,0.18);color:var(--accent);font-size:0.77rem;padding:4px 12px;border-radius:100px}
+@media(max-width:700px){.step-arrow{display:none}}
+.process-step h3{font-family:var(--fh);font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:9px}
+.process-step p{color:var(--muted);font-size:0.88rem;line-height:1.65}
+.step-time{margin-top:14px;display:inline-flex;align-items:center;gap:6px;background:var(--accentl);border:1px solid rgba(0,229,160,0.2);color:var(--accent);font-size:0.77rem;padding:4px 12px;border-radius:100px;font-weight:500}
 
-/* PRICING */
-.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px;max-width:900px;margin:0 auto}
-.price-card{background:rgba(23,23,34,0.8);border:1px solid var(--border);border-radius:20px;padding:36px 30px;position:relative;overflow:hidden;transition:transform 0.25s,border-color 0.25s}
-.price-card:hover{transform:translateY(-6px)}
-.price-card.featured{border-color:rgba(0,229,160,0.35);background:linear-gradient(145deg,rgba(0,229,160,0.04),rgba(23,23,34,0.9))}
+/* ═══════════════════════════════════════
+   PRICING
+═══════════════════════════════════════ */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px;margin:0 auto}
+@media(max-width:760px){.pricing-grid{grid-template-columns:1fr;max-width:400px}}
+.price-card{background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:32px 28px;position:relative;overflow:hidden;transition:transform 0.25s,border-color 0.25s}
+.price-card:hover{transform:translateY(-5px)}
+.price-card.featured{border-color:rgba(0,229,160,0.38);box-shadow:0 0 0 1px rgba(0,229,160,0.12)}
 .price-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#00b4d8)}
-.price-popular{position:absolute;top:18px;right:18px;background:var(--accent);color:#000;font-size:0.67rem;font-weight:700;letter-spacing:0.5px;padding:4px 11px;border-radius:100px}
-.price-name{font-family:var(--fh);font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
-.price-amount{display:flex;align-items:flex-start;gap:4px;margin-bottom:6px}
-.price-dollar{font-family:var(--fh);font-size:1.3rem;font-weight:700;color:var(--muted);margin-top:6px}
-.price-num{font-family:var(--fh);font-size:3.4rem;font-weight:800;color:var(--white);line-height:1;letter-spacing:-2px}
-.price-sub{color:var(--muted);font-size:0.8rem;margin-bottom:26px}
-.price-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:30px}
-.price-features li{display:flex;align-items:flex-start;gap:10px;font-size:0.86rem;color:var(--text)}
-.pf-y{color:var(--accent);flex-shrink:0;font-weight:700;font-size:0.72rem;background:rgba(0,229,160,0.1);width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:2px}
-.pf-n{color:var(--muted);flex-shrink:0;font-size:0.72rem;background:rgba(255,255,255,0.05);width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.price-popular{position:absolute;top:16px;right:16px;background:var(--accent);color:#000;font-size:0.67rem;font-weight:700;letter-spacing:0.5px;padding:3px 10px;border-radius:100px}
+.price-name{font-family:var(--fh);font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.price-amount{display:flex;align-items:flex-start;gap:3px;margin-bottom:5px}
+.price-dollar{font-family:var(--fh);font-size:1.2rem;font-weight:700;color:var(--muted);margin-top:5px}
+.price-num{font-family:var(--fh);font-size:3.2rem;font-weight:800;color:var(--white);line-height:1;letter-spacing:-2px}
+.price-sub{color:var(--muted);font-size:0.8rem;margin-bottom:24px}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:28px}
+.price-features li{display:flex;align-items:flex-start;gap:9px;font-size:0.87rem;color:var(--text)}
+.pf-y{color:var(--accent);flex-shrink:0;font-weight:700;font-size:0.7rem;background:var(--accentl);width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.pf-n{color:var(--muted);flex-shrink:0;font-size:0.7rem;background:var(--input-bg);width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:2px}
 .price-features li.dim{color:var(--muted)}
 .price-btn{width:100%;padding:13px;border-radius:10px;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:0.93rem;transition:all 0.2s}
-.pbf{background:var(--accent);color:#000;box-shadow:0 0 30px rgba(0,229,160,0.2)}
-.pbf:hover{background:var(--accent2);box-shadow:0 0 50px rgba(0,229,160,0.35);transform:translateY(-2px)}
-.pbg{background:rgba(255,255,255,0.05);color:var(--text);border:1px solid var(--border)!important}
-.pbg:hover{background:rgba(255,255,255,0.09);transform:translateY(-2px)}
-.pricing-note{text-align:center;margin-top:26px;color:var(--muted);font-size:0.82rem}
+.pbf{background:var(--accent);color:#000;box-shadow:0 0 28px rgba(0,229,160,0.2)}
+.pbf:hover{background:var(--accent2);transform:translateY(-2px)}
+.pbg{background:var(--input-bg);color:var(--text);border:1px solid var(--border2)!important}
+.pbg:hover{background:var(--accentl);border-color:rgba(0,229,160,0.3)!important;color:var(--accent)}
+.pricing-note{text-align:center;margin-top:24px;color:var(--muted);font-size:0.82rem}
 .pricing-note span{color:var(--accent)}
 
-/* TESTIMONIALS */
-.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px}
-.testi-card{background:rgba(23,23,34,0.7);border:1px solid var(--border);border-radius:var(--r);padding:28px 24px;transition:border-color 0.25s,transform 0.25s}
-.testi-card:hover{border-color:rgba(0,229,160,0.2);transform:translateY(-4px)}
-.testi-stars{color:#f59e0b;font-size:0.88rem;margin-bottom:14px;letter-spacing:2px}
-.testi-quote{color:var(--text);font-size:0.9rem;line-height:1.65;font-style:italic;font-weight:300;margin-bottom:18px;position:relative;padding-left:18px}
-.testi-quote::before{content:'"';position:absolute;left:0;top:-4px;color:var(--accent);font-size:1.6rem;font-style:normal;line-height:1}
-.testi-author{display:flex;align-items:center;gap:11px}
-.testi-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+/* ═══════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════ */
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.testi-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r);padding:26px 22px;transition:border-color 0.25s,transform 0.25s}
+.testi-card:hover{border-color:rgba(0,229,160,0.22);transform:translateY(-3px)}
+.testi-stars{color:#f59e0b;font-size:0.85rem;margin-bottom:12px;letter-spacing:2px}
+.testi-quote{color:var(--text);font-size:0.9rem;line-height:1.65;font-style:italic;font-weight:400;margin-bottom:16px;padding-left:16px;border-left:2px solid var(--accent)}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0}
 .testi-name{font-weight:600;font-size:0.86rem;color:var(--white)}
-.testi-biz{font-size:0.76rem;color:var(--muted);margin-top:2px}
-.testi-badge{margin-left:auto;background:rgba(0,229,160,0.07);border:1px solid rgba(0,229,160,0.15);color:var(--accent);font-size:0.72rem;padding:3px 8px;border-radius:100px;white-space:nowrap}
+.testi-biz{font-size:0.75rem;color:var(--muted);margin-top:2px}
+.testi-badge{margin-left:auto;background:var(--accentl);border:1px solid rgba(0,229,160,0.18);color:var(--accent);font-size:0.68rem;padding:3px 8px;border-radius:100px;white-space:nowrap;font-weight:500}
 
-/* ABOUT */
-.about-inner{display:grid;grid-template-columns:1fr 1.3fr;gap:60px;align-items:center}
-@media(max-width:720px){.about-inner{grid-template-columns:1fr;gap:40px}}
-.about-visual{background:linear-gradient(145deg,rgba(23,23,34,0.9),rgba(15,15,23,0.7));border:1px solid var(--border);border-radius:20px;padding:34px 26px;text-align:center}
-.about-avatar{width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#00b4d8);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 16px;box-shadow:0 0 50px rgba(0,229,160,0.2)}
-.about-name{font-family:var(--fh);font-size:1.1rem;font-weight:700;color:var(--white)}
-.about-role{color:var(--accent);font-size:0.8rem;margin-top:4px;margin-bottom:20px}
-.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.about-stat{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:13px 10px;text-align:center}
-.about-stat strong{display:block;font-family:var(--fh);font-size:1.25rem;font-weight:800;color:var(--accent);line-height:1}
+/* ═══════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════ */
+.about-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:56px;align-items:center}
+@media(max-width:720px){.about-inner{grid-template-columns:1fr;gap:36px}}
+.about-visual{background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:32px 24px;text-align:center}
+.about-avatar{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#00b4d8);display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin:0 auto 14px;box-shadow:0 0 40px rgba(0,229,160,0.2)}
+.about-name{font-family:var(--fh);font-size:1.05rem;font-weight:700;color:var(--white)}
+.about-role{color:var(--accent);font-size:0.8rem;margin-top:3px;margin-bottom:18px}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.about-stat{background:var(--input-bg);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
+.about-stat strong{display:block;font-family:var(--fh);font-size:1.2rem;font-weight:800;color:var(--accent);line-height:1}
 .about-stat span{font-size:0.7rem;color:var(--muted);margin-top:3px;display:block}
-.about-text p{color:var(--muted);font-size:0.92rem;line-height:1.7;margin-bottom:13px}
-.about-checks{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:11px}
-.about-checks li{display:flex;align-items:flex-start;gap:11px;color:var(--text);font-size:0.87rem;line-height:1.5}
-.about-checks li::before{content:'✓';color:var(--accent);font-weight:700;font-size:0.7rem;background:rgba(0,229,160,0.1);min-width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.about-text p{color:var(--muted);font-size:0.92rem;line-height:1.7;margin-bottom:12px}
+.about-checks{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:10px}
+.about-checks li{display:flex;align-items:flex-start;gap:10px;color:var(--text);font-size:0.88rem;line-height:1.5}
+.about-checks li::before{content:'✓';color:var(--accent);font-weight:700;font-size:0.7rem;background:var(--accentl);min-width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 
-/* FAQ */
-.faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
-.faq-item{background:rgba(23,23,34,0.7);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color 0.2s}
-.faq-item.open{border-color:rgba(0,229,160,0.25)}
-.faq-q{width:100%;background:none;border:none;display:flex;align-items:center;justify-content:space-between;padding:18px 22px;cursor:pointer;gap:16px;text-align:left}
-.faq-q-text{font-family:var(--fh);font-size:0.95rem;font-weight:600;color:var(--white)}
-.faq-icon{width:27px;height:27px;border-radius:7px;background:rgba(255,255,255,0.05);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--muted);font-size:1.1rem;transition:all 0.3s}
+/* ═══════════════════════════════════════
+   FAQ
+═══════════════════════════════════════ */
+.faq-list{max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.faq-item{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color 0.2s}
+.faq-item.open{border-color:rgba(0,229,160,0.28)}
+.faq-q{width:100%;background:none;border:none;display:flex;align-items:center;justify-content:space-between;padding:18px 20px;cursor:pointer;gap:14px;text-align:left;min-height:56px}
+.faq-q-text{font-family:var(--fh);font-size:0.93rem;font-weight:700;color:var(--white);line-height:1.3}
+.faq-icon{width:26px;height:26px;border-radius:7px;background:var(--input-bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--muted);font-size:1.05rem;transition:all 0.3s}
 .faq-item.open .faq-icon{background:var(--accentl);border-color:rgba(0,229,160,0.25);color:var(--accent);transform:rotate(45deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0,1,0,1),padding 0.3s;padding:0 22px}
-.faq-item.open .faq-a{max-height:300px;padding:0 22px 20px;transition:max-height 0.5s cubic-bezier(.34,1,.64,1),padding 0.3s}
-.faq-a p{color:var(--muted);font-size:0.87rem;line-height:1.7}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0,1,0,1);padding:0 20px}
+.faq-item.open .faq-a{max-height:300px;padding:0 20px 18px;transition:max-height 0.5s cubic-bezier(.34,1,.64,1)}
+.faq-a p{color:var(--muted);font-size:0.88rem;line-height:1.7}
 
-/* CTA */
-#cta{background:linear-gradient(135deg,#0a1f16,#09090e 40%,#0a1520);border-top:1px solid var(--border);text-align:center}
-.cta-badge{display:inline-block;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.22);color:var(--accent);font-size:0.77rem;font-weight:500;padding:6px 16px;border-radius:100px;margin-bottom:24px}
-.contact-box{background:rgba(23,23,34,0.9);border:1px solid var(--border);border-radius:22px;padding:44px 40px;max-width:560px;margin:0 auto 30px;box-shadow:0 0 100px rgba(0,229,160,0.05)}
-@media(max-width:560px){.contact-box{padding:30px 20px}}
-.contact-box h3{font-family:var(--fh);font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:5px}
-.contact-box > p{color:var(--muted);font-size:0.85rem;margin-bottom:24px}
+/* ═══════════════════════════════════════
+   CTA SECTION
+═══════════════════════════════════════ */
+.cta-section{background:linear-gradient(135deg,#0a1f16,var(--bg) 45%,#0a1520);border-top:1px solid var(--border);text-align:center}
+[data-theme="light"] .cta-section{background:linear-gradient(135deg,#e8fff6,var(--bg) 45%,#e8f0ff)}
+.cta-badge{display:inline-block;background:var(--accentl);border:1px solid rgba(0,229,160,0.25);color:var(--accent);font-size:0.77rem;font-weight:600;padding:6px 14px;border-radius:100px;margin-bottom:22px}
+.contact-box{background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:40px 36px;max-width:540px;margin:0 auto 28px;box-shadow:0 0 80px rgba(0,229,160,0.05)}
+@media(max-width:540px){.contact-box{padding:28px 18px}}
+.contact-box h3{font-family:var(--fh);font-size:1.15rem;font-weight:700;color:var(--white);margin-bottom:5px}
+.contact-box > p{color:var(--muted);font-size:0.85rem;margin-bottom:22px}
 .form-group{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(max-width:500px){.form-row{grid-template-columns:1fr}}
-.form-input{background:rgba(255,255,255,0.04);border:1.5px solid var(--border);border-radius:10px;padding:13px 15px;color:var(--text);font-size:0.91rem;font-family:var(--fb);outline:none;transition:border-color 0.2s,background 0.2s;width:100%}
-.form-input:focus{border-color:rgba(0,229,160,0.45);background:rgba(0,229,160,0.03)}
-.form-input.valid{border-color:rgba(0,229,160,0.4)}
-.form-input.error{border-color:rgba(255,90,90,0.5)}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+.form-input{background:var(--input-bg);border:1.5px solid var(--border);border-radius:10px;padding:13px 14px;color:var(--text);font-size:0.92rem;font-family:var(--fb);outline:none;transition:border-color 0.2s,background 0.2s;width:100%}
+.form-input:focus{border-color:rgba(0,229,160,0.5);background:var(--accentl)}
+.form-input.valid{border-color:rgba(0,229,160,0.45)}
+.form-input.error{border-color:rgba(255,90,90,0.55)}
 .form-input::placeholder{color:var(--muted)}
-.form-select{background:rgba(255,255,255,0.04);border:1.5px solid var(--border);border-radius:10px;padding:13px 15px;color:var(--text);font-size:0.91rem;font-family:var(--fb);outline:none;transition:border-color 0.2s;width:100%;appearance:none;cursor:pointer}
-.form-select:focus{border-color:rgba(0,229,160,0.45)}
-.form-select option{background:#1a1a25;color:var(--text)}
-.btn-submit{width:100%;background:var(--accent);color:#000;font-family:var(--fb);font-weight:700;font-size:1rem;padding:15px;border-radius:10px;border:none;cursor:pointer;box-shadow:0 0 40px rgba(0,229,160,0.22);transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px}
-.btn-submit:hover{background:var(--accent2);box-shadow:0 0 60px rgba(0,229,160,0.35);transform:translateY(-2px)}
+.form-select{background:var(--input-bg);border:1.5px solid var(--border);border-radius:10px;padding:13px 14px;color:var(--text);font-size:0.92rem;font-family:var(--fb);outline:none;transition:border-color 0.2s;width:100%;appearance:none;cursor:pointer}
+.form-select:focus{border-color:rgba(0,229,160,0.5)}
+.form-select option{background:var(--bg2);color:var(--text)}
+.btn-submit{width:100%;background:var(--accent);color:#000;font-family:var(--fb);font-weight:700;font-size:1rem;padding:15px;border-radius:10px;border:none;cursor:pointer;box-shadow:0 0 36px rgba(0,229,160,0.2);transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-submit:hover{background:var(--accent2);box-shadow:0 0 56px rgba(0,229,160,0.35);transform:translateY(-2px)}
 .btn-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none}
 .cta-guarantee{font-size:0.78rem;color:var(--muted);margin-top:14px;display:flex;align-items:center;justify-content:center;gap:7px}
-.cta-links{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:34px}
-.cta-link{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:0.83rem;transition:color 0.2s}
+.cta-links{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:30px}
+.cta-link{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:0.83rem;transition:color 0.2s;text-decoration:none}
 .cta-link:hover{color:var(--accent)}
 
-/* FOOTER */
-footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px;text-align:center;color:var(--muted);font-size:0.8rem;line-height:1.8}
-.f-links{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:center;margin-bottom:14px}
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--muted);font-size:0.8rem;line-height:1.8}
+.f-links{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;margin-bottom:12px}
 .f-links a{color:var(--muted);transition:color 0.2s;text-decoration:none}
 .f-links a:hover{color:var(--accent)}
 .f-copy span{color:var(--accent)}
 
-/* STICKY MOBILE CTA */
-.sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:150;background:rgba(9,9,14,0.96);backdrop-filter:blur(16px);border-top:1px solid var(--border);padding:13px 18px;display:none;align-items:center;justify-content:space-between;gap:12px;transform:translateY(100%);transition:transform 0.4s cubic-bezier(.34,1.26,.64,1)}
+/* ═══════════════════════════════════════
+   STICKY MOBILE CTA
+═══════════════════════════════════════ */
+.sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:150;background:var(--nav-scrolled);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--border);padding:12px 18px;display:none;align-items:center;justify-content:space-between;gap:12px;transform:translateY(100%);transition:transform 0.4s cubic-bezier(.34,1.26,.64,1)}
 .sticky-cta.show{transform:none}
-.sticky-cta-text{font-size:0.82rem;color:var(--text);line-height:1.3}
-.sticky-cta-text strong{display:block;font-family:var(--fh);font-size:0.9rem;color:var(--white)}
-.sticky-cta-btn{background:var(--accent);color:#000;font-family:var(--fb);font-weight:700;font-size:0.84rem;padding:11px 18px;border-radius:8px;border:none;cursor:pointer;white-space:nowrap;box-shadow:0 0 24px rgba(0,229,160,0.3);transition:all 0.2s;flex-shrink:0}
-.sticky-cta-btn:hover{background:var(--accent2)}
-@media(max-width:760px){.sticky-cta{display:flex}}
+.sticky-cta-text{font-size:0.8rem;color:var(--text);line-height:1.3}
+.sticky-cta-text strong{display:block;font-family:var(--fh);font-size:0.88rem;color:var(--white)}
+.sticky-btn{background:var(--accent);color:#000;font-family:var(--fb);font-weight:700;font-size:0.84rem;padding:11px 16px;border-radius:8px;border:none;cursor:pointer;white-space:nowrap;box-shadow:0 0 20px rgba(0,229,160,0.28);transition:all 0.2s;flex-shrink:0}
+.sticky-btn:hover{background:var(--accent2)}
+@media(max-width:760px){.sticky-cta{display:flex}} /* mobile-only sticky CTA */
 
-/* WHATSAPP */
-.wa-btn{position:fixed;bottom:80px;right:20px;z-index:160;width:54px;height:54px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,0.4);cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;text-decoration:none}
+/* ═══════════════════════════════════════
+   WHATSAPP
+═══════════════════════════════════════ */
+.wa-btn{position:fixed;bottom:80px;right:20px;z-index:160;width:52px;height:52px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,0.4);cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;text-decoration:none}
 .wa-btn:hover{transform:scale(1.1);box-shadow:0 6px 32px rgba(37,211,102,0.55)}
-.wa-tip{position:absolute;right:66px;top:50%;transform:translateY(-50%);background:rgba(23,23,34,0.97);border:1px solid var(--border);color:var(--text);font-size:0.76rem;padding:6px 11px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.2s;font-family:var(--fb)}
+.wa-tip{position:absolute;right:62px;top:50%;transform:translateY(-50%);background:var(--card-bg);border:1px solid var(--border2);color:var(--text);font-size:0.75rem;padding:6px 10px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.2s;font-family:var(--fb)}
 .wa-btn:hover .wa-tip{opacity:1}
-@media(max-width:760px){.wa-btn{bottom:90px}}
+@media(max-width:760px){.wa-btn{bottom:90px;right:14px}}
 
-/* TOAST */
-.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(30px);background:var(--accent);color:#000;font-weight:700;font-size:0.86rem;padding:12px 26px;border-radius:100px;box-shadow:0 8px 40px rgba(0,229,160,0.4);transition:transform 0.4s cubic-bezier(.34,1.56,.64,1),opacity 0.3s;z-index:9999;white-space:nowrap;opacity:0;font-family:var(--fb)}
+/* ═══════════════════════════════════════
+   MODAL
+═══════════════════════════════════════ */
+.modal-bg{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity 0.3s}
+.modal-bg.open{opacity:1;pointer-events:all}
+.modal{background:var(--bg3);border:1px solid var(--border);border-radius:20px;width:100%;max-width:780px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;transform:scale(0.94) translateY(18px);transition:transform 0.35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 40px 120px rgba(0,0,0,0.7)}
+.modal-bg.open .modal{transform:none}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--border);flex-shrink:0}
+.modal-header h3{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--white)}
+.modal-close{background:var(--input-bg);border:1px solid var(--border);color:var(--muted);width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:0.95rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+.modal-close:hover{background:rgba(255,80,80,0.15);border-color:rgba(255,80,80,0.3);color:#ff5a5a}
+.modal-body{overflow-y:auto;padding:24px;flex:1}
+.mock-browser{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.mock-bar{background:var(--input-bg);padding:10px 14px;display:flex;align-items:center;gap:9px;border-bottom:1px solid var(--border)}
+.mock-dots{display:flex;gap:5px}
+.mock-dot{width:10px;height:10px;border-radius:50%}
+.mock-dot-r{background:#ff5f57}.mock-dot-y{background:#febc2e}.mock-dot-g{background:#28c840}
+.mock-url{flex:1;background:rgba(255,255,255,0.06);border-radius:5px;padding:4px 11px;font-size:0.72rem;color:var(--muted)}
+.mock-content{padding:20px;min-height:360px}
+.m-hero{border-radius:9px;padding:28px 18px;text-align:center;margin-bottom:14px}
+.m-logo{font-family:var(--fh);font-size:1.4rem;font-weight:800}
+.m-sub{font-size:0.76rem;margin-top:3px}
+.m-btn{display:inline-block;color:#fff;padding:8px 20px;border-radius:7px;font-weight:700;font-size:0.8rem;margin-top:12px}
+.m-row{display:grid;gap:9px;margin-bottom:12px}
+.m-card{border-radius:7px;padding:11px;border:1px solid rgba(255,255,255,0.08)}
+.m-card-name{font-size:0.75rem;font-weight:600}
+.m-card-price{font-size:0.92rem;font-weight:700;margin-top:2px;color:#fff}
+.m-card-desc{font-size:0.72rem;color:#888;margin-top:2px}
+.m-footer{border-radius:7px;padding:10px;text-align:center;font-size:0.7rem;margin-top:2px}
+
+/* ═══════════════════════════════════════
+   TOAST
+═══════════════════════════════════════ */
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(30px);background:var(--accent);color:#000;font-weight:700;font-size:0.85rem;padding:11px 24px;border-radius:100px;box-shadow:0 8px 40px rgba(0,229,160,0.4);transition:transform 0.4s cubic-bezier(.34,1.56,.64,1),opacity 0.3s;z-index:9999;white-space:nowrap;opacity:0;font-family:var(--fb)}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-@media(max-width:760px){.toast{bottom:160px;font-size:0.8rem;padding:10px 20px}}
+@media(max-width:760px){.toast{bottom:160px;font-size:0.8rem;padding:10px 18px;max-width:90vw;white-space:normal;text-align:center}}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity 0.65s ease,transform 0.65s ease}
-.reveal-l{opacity:0;transform:translateX(-26px);transition:opacity 0.65s ease,transform 0.65s ease}
-.reveal-r{opacity:0;transform:translateX(26px);transition:opacity 0.65s ease,transform 0.65s ease}
+/* ═══════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal-l{opacity:0;transform:translateX(-24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal-r{opacity:0;transform:translateX(24px);transition:opacity 0.6s ease,transform 0.6s ease}
 .reveal.visible,.reveal-l.visible,.reveal-r.visible{opacity:1;transform:none}
 
-/* ── FOCUS STYLES (keyboard nav) ── */
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-.nav-cta:focus-visible,.btn-primary:focus-visible,.btn-ghost:focus-visible,.btn-submit:focus-visible,.price-btn:focus-visible{outline-offset:4px}
-.faq-q:focus-visible{outline:2px solid var(--accent);outline-offset:0;border-radius:12px}
-.modal-close:focus-visible{outline:2px solid var(--accent)}
-
-/* ── SKIP LINK ── */
-.skip-link{position:absolute;top:-100px;left:16px;z-index:9999;background:var(--accent);color:#000;font-weight:700;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;transition:top 0.2s}
-.skip-link:focus{top:16px}
-
-/* ── REDUCE MOTION ── */
+/* ═══════════════════════════════════════
+   REDUCED MOTION
+═══════════════════════════════════════ */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
   html{scroll-behavior:auto}
   .reveal,.reveal-l,.reveal-r{opacity:1;transform:none}
 }
-
 </style>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- NAV -->
+<!-- ══ NAV ══════════════════════════════ -->
 <nav id="mainNav" aria-label="Main navigation">
   <a class="nav-logo" href="#">LocalSite<span>Co.</span></a>
-  <ul class="nav-links">
+  <ul class="nav-center" role="list">
     <li><a href="#value">Why Us</a></li>
     <li><a href="#demos">Work</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-  <a href="#cta" class="nav-cta">Free Preview →</a>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">🌙</button>
+    <a href="#cta" class="nav-cta">Free Preview →</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
-<!-- HERO -->
+<!-- Mobile menu -->
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation" aria-hidden="true">
+  <a href="#value"   onclick="closeMobileMenu()">Why Us</a>
+  <a href="#demos"   onclick="closeMobileMenu()">Sample Work</a>
+  <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
+  <a href="#faq"     onclick="closeMobileMenu()">FAQ</a>
+  <a href="#cta" class="mm-cta" onclick="closeMobileMenu()">Get Free Preview →</a>
+</nav>
+
 <main id="main-content">
+
+<!-- ══ HERO ═════════════════════════════ -->
 <section class="hero" id="home" aria-label="Hero">
   <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
   <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
   <div class="hero-grid-bg" aria-hidden="true"></div>
   <div class="hero-inner">
-    <div class="badge" aria-hidden="true"><span class="dot"></span> Websites delivered in 24–72 hours</div>
-    <h1>More Calls.<br><em>More Bookings.</em><span class="line2">Websites That Actually Bring You Customers</span></h1>
-    <p class="hero-sub">We build fast, professional websites for local businesses — barbershops, restaurants, salons, and more. Free preview before you pay a cent.</p>
-    <div class="hero-actions">
-      <a href="#cta" class="btn-primary">Get a Free Website Preview ↓</a>
-      <a href="#demos" class="btn-ghost">See Sample Work</a>
+    <div class="hero-left" style="animation:fadeUp 0.6s ease both">
+      <div class="hero-badge" aria-hidden="true"><span class="dot"></span> Websites delivered in 24–72 hours</div>
+      <h1>More Calls.<br><em>More Bookings.</em><br>More Customers.</h1>
+      <p class="hero-sub">Professional websites for local businesses — barbershops, restaurants, salons, and more. Free preview before you pay a single cent.</p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn-primary">Get a Free Preview ↓</a>
+        <a href="#demos" class="btn-ghost">See Examples</a>
+      </div>
+      <div class="hero-note">
+        <span>✓ Free preview</span><span>✓ No commitment</span><span>✓ Pay only if you love it</span>
+      </div>
     </div>
-    <div class="hero-note">
-      <span>✓ Free preview</span><span>✓ No commitment</span><span>✓ Pay only if you love it</span><span>✓ Live in 72 hrs</span>
+    <!-- Phone mockup visual -->
+    <div class="hero-right" style="animation:fadeUp 0.6s 0.2s ease both">
+      <div class="phone-glow" aria-hidden="true"></div>
+      <div class="phone-wrap" role="img" aria-label="Example barbershop website on mobile">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="ps-nav"><span class="ps-logo">✂️ Tony's Cuts</span><span class="ps-btn">Book Now</span></div>
+            <div class="ps-hero">
+              <div class="ps-h1">Fresh Cuts.<br>No Wait.</div>
+              <div class="ps-tag">Fades · Beards · Kids · Seniors</div>
+              <span class="ps-cta">📞 Call or Book Online</span>
+            </div>
+            <div class="ps-services">
+              <div class="ps-svc"><div class="ps-svc-n">Fade</div><div class="ps-svc-p">$25</div></div>
+              <div class="ps-svc"><div class="ps-svc-n">Beard</div><div class="ps-svc-p">$15</div></div>
+              <div class="ps-svc"><div class="ps-svc-n">Full Cut</div><div class="ps-svc-p">$30</div></div>
+            </div>
+            <div class="ps-review"><div class="ps-stars">★★★★★</div><div class="ps-rev-text">"Best fade in the city" — Google</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="float-badge fb-left" aria-hidden="true"><div class="fb-icon">📞</div><div class="fb-label">+12 calls today</div><div class="fb-val">From Google search</div></div>
+      <div class="float-badge fb-right" aria-hidden="true"><div class="fb-icon">⚡</div><div class="fb-label">Live in 48 hours</div><div class="fb-val">Fast delivery</div></div>
     </div>
   </div>
-  <div class="scroll-ind" aria-hidden="true"><span>Scroll</span><div class="scroll-line"></div></div>
 </section>
 
-<!-- PROOF BAR -->
+<!-- ══ STATS STRIP ════════════════════ -->
+<div class="stats-strip" role="region" aria-label="Key statistics">
+  <div class="stats-inner">
+    <div class="stat-item"><span class="stat-num" data-target="72">0</span><span class="stat-label">Hour avg. delivery</span></div>
+    <div class="stat-item"><span class="stat-num" data-target="100" data-suffix="%">0</span><span class="stat-label">Mobile optimized</span></div>
+    <div class="stat-item"><span class="stat-num" data-target="8" data-suffix="+">0</span><span class="stat-label">Business types served</span></div>
+    <div class="stat-item"><span class="stat-num" data-prefix="$" data-target="299">0</span><span class="stat-label">Starting price</span></div>
+  </div>
+</div>
+
+<!-- ══ PROOF BAR ══════════════════════ -->
 <aside class="proof-bar" aria-label="Key benefits">
-  <div class="proof-item">⚡ <strong>72-Hour Delivery</strong></div>
-  <div class="proof-sep">|</div>
-  <div class="proof-item">📱 <strong>Mobile-First Design</strong></div>
-  <div class="proof-sep">|</div>
-  <div class="proof-item">📞 <strong>Built to Get Calls</strong></div>
-  <div class="proof-sep">|</div>
+  <div class="proof-item">⚡ <strong>72-Hr Delivery</strong></div>
+  <div class="proof-sep" aria-hidden="true">|</div>
+  <div class="proof-item">📱 <strong>Mobile-First</strong></div>
+  <div class="proof-sep" aria-hidden="true">|</div>
+  <div class="proof-item">📞 <strong>Built to Convert</strong></div>
+  <div class="proof-sep" aria-hidden="true">|</div>
   <div class="proof-item">🔒 <strong>Free Preview, Zero Risk</strong></div>
-  <div class="proof-sep">|</div>
+  <div class="proof-sep" aria-hidden="true">|</div>
   <div class="proof-item">🌟 <strong>Local Business Specialists</strong></div>
 </aside>
 
-<!-- VALUE -->
-<section id="value" aria-label="Why choose us" style="background:var(--bg2)">
+<!-- ══ VALUE ══════════════════════════ -->
+<section id="value" class="sec-alt" aria-label="Why choose us">
   <div class="container">
     <div class="section-label">Why It Works</div>
     <h2 class="section-title">Websites built for<br>one thing: customers</h2>
-    <p class="section-sub">Every design decision is made to turn visitors into paying customers — not to win design awards.</p>
+    <p class="section-sub">Every design decision converts visitors into paying customers — not to win design awards.</p>
     <div class="value-grid reveal">
       <div class="value-card"><div class="vi">📱</div><h3>Mobile-First Design</h3><p>Over 70% of local searches happen on phones. Your site looks perfect and loads fast on every device — guaranteed.</p></div>
-      <div class="value-card"><div class="vi">⚡</div><h3>Delivered in 24–72 Hours</h3><p>No months-long projects. No disappearing developers. You brief us Monday, you're live by Wednesday.</p></div>
-      <div class="value-card"><div class="vi">📞</div><h3>Built to Get You Calls</h3><p>Click-to-call buttons, booking links, contact forms — every page makes it effortless for customers to reach you.</p></div>
-      <div class="value-card"><div class="vi">🔍</div><h3>Google-Ready from Day One</h3><p>Basic local SEO built in. Your business name, location, and services set up so Google can find and recommend you.</p></div>
+      <div class="value-card"><div class="vi">⚡</div><h3>Delivered in 24–72 Hours</h3><p>No months-long projects. No disappearing developers. Brief us Monday, you're live by Wednesday.</p></div>
+      <div class="value-card"><div class="vi">📞</div><h3>Built to Get You Calls</h3><p>Click-to-call, booking links, contact forms — every page makes it effortless for customers to reach you.</p></div>
+      <div class="value-card"><div class="vi">🔍</div><h3>Google-Ready from Day One</h3><p>Basic local SEO built in so Google knows who you are, where you are, and who you serve.</p></div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
+<!-- ══ SERVICES ═══════════════════════ -->
 <section id="services" aria-label="Our services">
   <div class="container">
     <div class="section-label">What We Build</div>
     <h2 class="section-title">Everything a local<br>business needs online</h2>
     <p class="section-sub">No bloated packages. Just the things that actually bring in customers.</p>
     <div class="services-grid reveal">
-      <div class="svc-card"><div class="svc-bar"></div><div class="svc-num">01</div><h3>Website Design</h3><p>A clean, professional site that makes your business look credible and trustworthy from the first click. Custom to your brand, your city, your customers.</p><span class="svc-tag">Core Service</span></div>
-      <div class="svc-card"><div class="svc-bar"></div><div class="svc-num">02</div><h3>Mobile Optimization</h3><p>Every site is optimized for phones first. Fast load times, easy navigation, and tap-friendly buttons that work on any screen.</p><span class="svc-tag">Always Included</span></div>
-      <div class="svc-card"><div class="svc-bar"></div><div class="svc-num">03</div><h3>Booking & Call Setup</h3><p>Click-to-call buttons, contact forms, and booking links connected to your calendar. Make it effortless for customers to say yes.</p><span class="svc-tag">Drives Revenue</span></div>
-      <div class="svc-card"><div class="svc-bar"></div><div class="svc-num">04</div><h3>Local SEO Setup</h3><p>We set up your site so Google knows who you are, where you are, and what you offer — helping you show up when customers search locally.</p><span class="svc-tag">Long-Term Growth</span></div>
+      <div class="svc-card"><div class="svc-bar"></div><div class="svc-num">01</div><h3>Website Design</h3><p>A clean, professional site that makes your business look credible from the first click. Custom to your brand, city, and customers.</p><span class="svc-tag">Core Service</span></div>
+      <div class="svc-card"><div class="svc-bar"></div><div class="svc-num">02</div><h3>Mobile Optimization</h3><p>Fast load times, easy navigation, and tap-friendly buttons that work flawlessly on any screen — always included.</p><span class="svc-tag">Always Included</span></div>
+      <div class="svc-card"><div class="svc-bar"></div><div class="svc-num">03</div><h3>Booking & Call Setup</h3><p>Click-to-call buttons, contact forms, and booking links connected to your calendar or phone number.</p><span class="svc-tag">Drives Revenue</span></div>
+      <div class="svc-card"><div class="svc-bar"></div><div class="svc-num">04</div><h3>Local SEO Setup</h3><p>Your business name, location, and services set up correctly so Google can find and recommend you to nearby customers.</p><span class="svc-tag">Long-Term Growth</span></div>
     </div>
   </div>
 </section>
 
-<!-- DEMOS -->
-<section id="demos" aria-label="Sample work" style="background:var(--bg2)">
+<!-- ══ DEMOS CAROUSEL (8 examples) ═══ -->
+<section id="demos" class="sec-alt demos-section" aria-label="Sample work">
   <div class="container">
     <div class="section-label">Sample Work</div>
-    <h2 class="section-title">Real-world website<br>examples for local businesses</h2>
-    <p class="section-sub">Demo projects showing exactly what we build. Your site is fully customized to your brand, city, and customers.</p>
-    <div class="demos-grid reveal">
-      <div class="demo-card">
-        <div class="demo-preview db">✂️<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><button class="demo-overlay-btn" onclick="openModal('barber',this)">View Sample Site →</button></div></div>
-        <div class="demo-body"><h3>Barbershop Website</h3><p>Online booking, service menu, gallery, and click-to-call. Everything a shop needs to bring in new clients every day.</p><div class="demo-tags"><span class="demo-tag">Online Booking</span><span class="demo-tag">Gallery</span><span class="demo-tag">Mobile-First</span></div></div>
-      </div>
-      <div class="demo-card">
-        <div class="demo-preview dr">🍽️<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><button class="demo-overlay-btn" onclick="openModal('resto',this)">View Sample Site →</button></div></div>
-        <div class="demo-body"><h3>Restaurant Website</h3><p>Menu display, hours, reservations link, and map integration. Customers find you, check you out, and show up.</p><div class="demo-tags"><span class="demo-tag">Menu Page</span><span class="demo-tag">Reservations</span><span class="demo-tag">Google Maps</span></div></div>
-      </div>
-      <div class="demo-card">
-        <div class="demo-preview dc">🧹<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><button class="demo-overlay-btn" onclick="openModal('clean',this)">View Sample Site →</button></div></div>
-        <div class="demo-body"><h3>Cleaning Service Website</h3><p>Service list, quote form, trust badges, and testimonials. Builds credibility fast and turns visitors into booked jobs.</p><div class="demo-tags"><span class="demo-tag">Lead Form</span><span class="demo-tag">Services List</span><span class="demo-tag">Trust Signals</span></div></div>
-      </div>
-      <div class="demo-card">
-        <div class="demo-preview ds">💅<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><button class="demo-overlay-btn" onclick="openModal('salon',this)">View Sample Site →</button></div></div>
-        <div class="demo-body"><h3>Hair Salon Website</h3><p>Online booking, service pricing, before/after gallery, and Instagram feed to attract new walk-ins.</p><div class="demo-tags"><span class="demo-tag">Booking Link</span><span class="demo-tag">Pricing Menu</span><span class="demo-tag">Instagram Feed</span></div></div>
-      </div>
+    <h2 class="section-title">8 real-world examples<br>across every business type</h2>
+    <p class="section-sub">Each demo is fully customized when we build yours. Tap any card to see the full preview.</p>
+  </div>
+  <div class="carousel-wrap" role="region" aria-label="Demo website examples" tabindex="0">
+    <div class="carousel-track" id="carouselTrack">
+
+      <article class="demo-card" onclick="openModal('barber',this)" role="button" tabindex="0" aria-label="View barbershop website sample">
+        <div class="demo-preview dp-barber">✂️<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><span class="demo-overlay-btn">View Sample →</span></div></div>
+        <div class="demo-body"><h3>Barbershop</h3><p>Online booking, service menu, gallery, and click-to-call for steady new clients.</p><div class="demo-tags"><span class="demo-tag">Booking</span><span class="demo-tag">Gallery</span><span class="demo-tag">Mobile</span></div></div>
+      </article>
+
+      <article class="demo-card" onclick="openModal('resto',this)" role="button" tabindex="0" aria-label="View restaurant website sample">
+        <div class="demo-preview dp-resto">🍽️<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><span class="demo-overlay-btn">View Sample →</span></div></div>
+        <div class="demo-body"><h3>Restaurant</h3><p>Menu display, reservations, hours, and map integration. Customers find you and show up.</p><div class="demo-tags"><span class="demo-tag">Menu</span><span class="demo-tag">Reservations</span><span class="demo-tag">Maps</span></div></div>
+      </article>
+
+      <article class="demo-card" onclick="openModal('clean',this)" role="button" tabindex="0" aria-label="View cleaning service website sample">
+        <div class="demo-preview dp-clean">🧹<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><span class="demo-overlay-btn">View Sample →</span></div></div>
+        <div class="demo-body"><h3>Cleaning Service</h3><p>Quote form, service list, trust badges. Turns visitors into booked jobs fast.</p><div class="demo-tags"><span class="demo-tag">Lead Form</span><span class="demo-tag">Services</span><span class="demo-tag">Trust</span></div></div>
+      </article>
+
+      <article class="demo-card" onclick="openModal('salon',this)" role="button" tabindex="0" aria-label="View hair salon website sample">
+        <div class="demo-preview dp-salon">💅<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><span class="demo-overlay-btn">View Sample →</span></div></div>
+        <div class="demo-body"><h3>Hair Salon</h3><p>Booking link, pricing menu, before/after gallery, and Instagram feed integration.</p><div class="demo-tags"><span class="demo-tag">Booking</span><span class="demo-tag">Pricing</span><span class="demo-tag">Instagram</span></div></div>
+      </article>
+
+      <article class="demo-card" onclick="openModal('auto',this)" role="button" tabindex="0" aria-label="View auto shop website sample">
+        <div class="demo-preview dp-auto">🔧<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><span class="demo-overlay-btn">View Sample →</span></div></div>
+        <div class="demo-body"><h3>Auto Shop</h3><p>Service list, quote request, and phone CTA. Fills your schedule with local drivers.</p><div class="demo-tags"><span class="demo-tag">Quote Form</span><span class="demo-tag">Services</span><span class="demo-tag">Call CTA</span></div></div>
+      </article>
+
+      <article class="demo-card" onclick="openModal('gym',this)" role="button" tabindex="0" aria-label="View gym website sample">
+        <div class="demo-preview dp-gym">💪<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><span class="demo-overlay-btn">View Sample →</span></div></div>
+        <div class="demo-body"><h3>Gym / Fitness</h3><p>Class schedule, membership pricing, free trial CTA. Converts browsers into members.</p><div class="demo-tags"><span class="demo-tag">Schedule</span><span class="demo-tag">Pricing</span><span class="demo-tag">Free Trial</span></div></div>
+      </article>
+
+      <article class="demo-card" onclick="openModal('nail',this)" role="button" tabindex="0" aria-label="View nail salon website sample">
+        <div class="demo-preview dp-nail">💎<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><span class="demo-overlay-btn">View Sample →</span></div></div>
+        <div class="demo-body"><h3>Nail Salon</h3><p>Photo gallery, service pricing, online booking, and Google review display.</p><div class="demo-tags"><span class="demo-tag">Gallery</span><span class="demo-tag">Booking</span><span class="demo-tag">Reviews</span></div></div>
+      </article>
+
+      <article class="demo-card" onclick="openModal('contra',this)" role="button" tabindex="0" aria-label="View contractor website sample">
+        <div class="demo-preview dp-contra">🏠<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><span class="demo-overlay-btn">View Sample →</span></div></div>
+        <div class="demo-body"><h3>Contractor</h3><p>Project gallery, services, license/insurance badges, and quote request form.</p><div class="demo-tags"><span class="demo-tag">Portfolio</span><span class="demo-tag">Quote Form</span><span class="demo-tag">Trust</span></div></div>
+      </article>
+
     </div>
   </div>
+  <div class="carousel-dots" id="carouselDots" aria-label="Carousel navigation"></div>
 </section>
 
-<!-- BEFORE / AFTER -->
+<!-- ══ BEFORE / AFTER ════════════════ -->
 <section id="compare" aria-label="Before and after comparison">
   <div class="container">
-    <div style="text-align:center;margin-bottom:52px">
+    <div style="text-align:center;margin-bottom:48px">
       <div class="section-label">Before vs After</div>
       <h2 class="section-title">What your site looks like now<br>vs. what it <em style="color:var(--accent);font-style:normal">should</em> look like</h2>
-      <p class="section-sub" style="margin:0 auto">Most local business sites lose customers the moment they land. Here's the difference a proper site makes.</p>
+      <p class="section-sub" style="margin:0 auto">Most local business sites lose customers the second they land. Here's what we fix.</p>
     </div>
     <div class="ba-wrap reveal">
       <div class="ba-card ba-bad">
         <div class="ba-label">❌ Typical local business site</div>
         <div class="ba-screen">
           <div class="bad-nav"><span>TONY'S CUTS</span><div><a>Home</a><a>About</a><a>Contact</a></div></div>
-          <div class="bad-hero"><h2>Welcome to Tony's Cuts</h2><p>We are a family owned barbershop serving the community since 1998. Quality haircuts for the whole family at affordable prices.</p></div>
-          <div class="bad-cols"><div class="bad-col"><p>We do haircuts, fades, shaves and beard trims. Call us for an appointment or walk in during business hours.</p></div><div class="bad-col"><p>Located at 123 Main St. Open Mon–Sat. Closed Sunday. Call (555) 123-4567 for info.</p></div></div>
-          <p class="bad-footer">Copyright 2009 Tony's Cuts. All Rights Reserved. Website designed by Tony's nephew. Last updated 2015.</p>
+          <div class="bad-hero"><h2>Welcome to Tony's Cuts</h2><p>We are a family owned barbershop serving the community since 1998. Quality cuts for the whole family at affordable prices.</p></div>
+          <div class="bad-cols"><div class="bad-col"><p>We do haircuts, fades, shaves and beard trims. Call for an appointment or walk in during business hours.</p></div><div class="bad-col"><p>Located at 123 Main St. Open Mon–Sat. Closed Sunday. Call (555) 123-4567.</p></div></div>
+          <p class="bad-footer">© 2009 Tony's Cuts. Website designed by Tony's nephew. Last updated 2015.</p>
         </div>
       </div>
       <div class="ba-card ba-good">
         <div class="ba-label">✓ LocalSite Co. website</div>
         <div class="ba-screen">
           <div class="good-nav"><span class="good-nav-logo">✂️ Tony's Cuts</span><span class="good-nav-btn">Book Now</span></div>
-          <div class="good-hero"><h2>Fresh Cuts.<br>No Wait.</h2><p>Fades · Beards · Kids · Seniors</p><span class="g-btn">📞 Call or Book Online</span></div>
+          <div class="good-hero-mock"><h2>Fresh Cuts.<br>No Wait.</h2><p>Fades · Beards · Kids · Seniors</p><span class="g-btn">📞 Call or Book Online</span></div>
           <div class="good-svcs">
             <div class="good-svc"><div class="good-svc-n">Fade</div><div class="good-svc-p">$25</div></div>
-            <div class="good-svc"><div class="good-svc-n">Beard Trim</div><div class="good-svc-p">$15</div></div>
+            <div class="good-svc"><div class="good-svc-n">Beard</div><div class="good-svc-p">$15</div></div>
             <div class="good-svc"><div class="good-svc-n">Full Cut</div><div class="good-svc-p">$30</div></div>
           </div>
         </div>
@@ -475,8 +732,8 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
   </div>
 </section>
 
-<!-- PROCESS -->
-<section id="process" aria-label="How it works" style="background:var(--bg2)">
+<!-- ══ PROCESS ════════════════════════ -->
+<section id="process" class="sec-alt" aria-label="How it works">
   <div class="container">
     <div class="section-label">How It Works</div>
     <h2 class="section-title">From zero to live site<br>in 3 simple steps</h2>
@@ -484,24 +741,24 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
     <div class="process-steps reveal">
       <div class="process-step"><div class="step-num-wrap"><div class="step-num">01</div><div class="step-arrow">→</div></div><h3>Tell Us About Your Business</h3><p>Fill out a simple form — business name, what you do, your location, and any photos or colors you like. Five minutes, max.</p><span class="step-time">⏱ 5 minutes of your time</span></div>
       <div class="process-step"><div class="step-num-wrap"><div class="step-num">02</div><div class="step-arrow">→</div></div><h3>We Build Your Free Preview</h3><p>We design a real, full website preview based on your details. You see exactly what your site will look like — before paying a cent.</p><span class="step-time">⏱ Within 24 hours</span></div>
-      <div class="process-step"><div class="step-num-wrap"><div class="step-num">03</div></div><h3>Approve & Go Live</h3><p>Love it? We finalize and publish. Need tweaks? Handled. You're live and bringing in customers within 72 hours total.</p><span class="step-time">⏱ 24–72 hours total</span></div>
+      <div class="process-step"><div class="step-num-wrap"><div class="step-num">03</div></div><h3>Approve & Go Live</h3><p>Love it? We finalize and publish. Need tweaks? We handle it. You're live and bringing in customers fast.</p><span class="step-time">⏱ 24–72 hours total</span></div>
     </div>
   </div>
 </section>
 
-<!-- PRICING -->
+<!-- ══ PRICING ════════════════════════ -->
 <section id="pricing" aria-label="Pricing">
   <div class="container">
-    <div style="text-align:center;margin-bottom:52px">
+    <div style="text-align:center;margin-bottom:48px">
       <div class="section-label">Simple Pricing</div>
       <h2 class="section-title">Straightforward pricing.<br>No hidden fees.</h2>
-      <p class="section-sub" style="margin:0 auto">One-time cost to get your site built. No monthly fees unless you want hosting.</p>
+      <p class="section-sub" style="margin:0 auto">One-time cost. No monthly fees unless you want hosting.</p>
     </div>
     <div class="pricing-grid reveal">
       <div class="price-card">
         <div class="price-name">Starter</div>
         <div class="price-amount"><span class="price-dollar">$</span><span class="price-num">299</span></div>
-        <div class="price-sub">One-time payment. No monthly fee.</div>
+        <div class="price-sub">One-time · No monthly fee</div>
         <ul class="price-features">
           <li><span class="pf-y">✓</span>1-Page professional website</li>
           <li><span class="pf-y">✓</span>Mobile-first design</li>
@@ -518,7 +775,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
         <div class="price-popular">Most Popular</div>
         <div class="price-name">Pro</div>
         <div class="price-amount"><span class="price-dollar">$</span><span class="price-num">499</span></div>
-        <div class="price-sub">One-time payment. No monthly fee.</div>
+        <div class="price-sub">One-time · No monthly fee</div>
         <ul class="price-features">
           <li><span class="pf-y">✓</span>Up to 4-page website</li>
           <li><span class="pf-y">✓</span>Mobile-first design</li>
@@ -534,7 +791,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
       <div class="price-card">
         <div class="price-name">Premium</div>
         <div class="price-amount"><span class="price-dollar">$</span><span class="price-num">799</span></div>
-        <div class="price-sub">One-time payment. No monthly fee.</div>
+        <div class="price-sub">One-time · No monthly fee</div>
         <ul class="price-features">
           <li><span class="pf-y">✓</span>Full multi-page website</li>
           <li><span class="pf-y">✓</span>Everything in Pro</li>
@@ -543,48 +800,36 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
           <li><span class="pf-y">✓</span>Instagram feed integration</li>
           <li><span class="pf-y">✓</span>2 rounds of revisions</li>
           <li><span class="pf-y">✓</span>30-day support included</li>
-          <li><span class="pf-y">✓</span>Priority: delivered in 24 hrs</li>
+          <li><span class="pf-y">✓</span>Priority: 24-hr delivery</li>
         </ul>
         <button class="price-btn pbg" onclick="scrollToCta()">Get Free Preview</button>
       </div>
     </div>
-    <p class="pricing-note">All plans include a <span>free preview before payment</span>. Hosting available from $12/mo. Custom quotes available for larger projects. Payment plans available.</p>
+    <p class="pricing-note">All plans include a <span>free preview before payment</span>. Hosting from $12/mo. Payment plans available for Pro & Premium.</p>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section id="testimonials" aria-label="Client testimonials" style="background:var(--bg2)">
+<!-- ══ TESTIMONIALS ═══════════════════ -->
+<section id="testimonials" class="sec-alt" aria-label="Client testimonials">
   <div class="container">
-    <div style="text-align:center;margin-bottom:52px">
+    <div style="text-align:center;margin-bottom:48px">
       <div class="section-label">Client Results</div>
       <h2 class="section-title">What local business<br>owners are saying</h2>
     </div>
     <div class="testi-grid reveal">
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">I was getting zero calls from my old site. Within two weeks of the new site going live I started getting 3–4 calls a day from people who found me on Google. Completely worth it.</p>
-        <div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#4f46e5,#7c3aed)">✂️</div><div><div class="testi-name">Marcus T.</div><div class="testi-biz">Owner, Marcus Cuts Barbershop</div></div><span class="testi-badge">Barbershop</span></div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">The free preview was what sold me. I could see exactly what I was getting before spending a dollar. The site was live in two days and it looks better than restaurants with way bigger budgets.</p>
-        <div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#dc2626,#b91c1c)">🍽️</div><div><div class="testi-name">Diana R.</div><div class="testi-biz">Owner, La Cocina Restaurant</div></div><span class="testi-badge">Restaurant</span></div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">My cleaning business went from zero online presence to ranking on Google for local searches. The booking form alone brought in 6 new clients in the first month.</p>
-        <div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#059669,#047857)">🧹</div><div><div class="testi-name">James K.</div><div class="testi-biz">Owner, ClearShine Cleaning Co.</div></div><span class="testi-badge">Cleaning</span></div>
-      </div>
+      <div class="testi-card"><div class="testi-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="testi-quote">I was getting zero calls from my old site. Within two weeks of the new site going live I started getting 3–4 calls a day from Google. Completely worth it.</p><div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#4f46e5,#7c3aed)" aria-hidden="true">✂️</div><div><div class="testi-name">Marcus T.</div><div class="testi-biz">Marcus Cuts Barbershop</div></div><span class="testi-badge">Barbershop</span></div></div>
+      <div class="testi-card"><div class="testi-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="testi-quote">The free preview was what sold me. I could see exactly what I was getting before spending a dollar. The site was live in two days and looks better than places with bigger budgets.</p><div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#dc2626,#b91c1c)" aria-hidden="true">🍽️</div><div><div class="testi-name">Diana R.</div><div class="testi-biz">La Cocina Restaurant</div></div><span class="testi-badge">Restaurant</span></div></div>
+      <div class="testi-card"><div class="testi-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="testi-quote">My cleaning business went from zero online presence to ranking on Google in weeks. The booking form alone brought in 6 new clients in the first month.</p><div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#059669,#047857)" aria-hidden="true">🧹</div><div><div class="testi-name">James K.</div><div class="testi-biz">ClearShine Cleaning Co.</div></div><span class="testi-badge">Cleaning</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ══ ABOUT ═══════════════════════════ -->
 <section id="about" aria-label="About us">
   <div class="container">
     <div class="about-inner">
       <div class="about-visual reveal-l">
-        <div class="about-avatar">💻</div>
+        <div class="about-avatar" aria-hidden="true">💻</div>
         <div class="about-name">LocalSite Co.</div>
         <div class="about-role">Web Design for Local Businesses</div>
         <div class="about-stats">
@@ -597,8 +842,8 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
       <div class="about-text reveal-r">
         <div class="section-label">About Us</div>
         <h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.2rem)">We help small businesses compete online — without the big agency price tag</h2>
-        <p>We started LocalSite Co. with one goal: help small business owners get the online presence they deserve, without the runaround, the jargon, or the inflated fees.</p>
-        <p>We focus exclusively on local businesses — barbershops, restaurants, salons, cleaners, contractors. We know what works for your type of business, and we build it fast.</p>
+        <p>We built LocalSite Co. to help small business owners get the online presence they deserve — without the runaround, the jargon, or the inflated fees.</p>
+        <p>We focus exclusively on local businesses. Barbershops, restaurants, salons, cleaners, contractors. We know what works for your type of business, and we build it fast.</p>
         <ul class="about-checks">
           <li>No cookie-cutter templates that look like every other site</li>
           <li>No tech overwhelm — we handle everything start to finish</li>
@@ -610,41 +855,41 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
   </div>
 </section>
 
-<!-- FAQ -->
-<section id="faq" aria-label="Frequently asked questions" style="background:var(--bg2)">
+<!-- ══ FAQ ════════════════════════════ -->
+<section id="faq" class="sec-alt" aria-label="Frequently asked questions">
   <div class="container">
-    <div style="text-align:center;margin-bottom:52px">
+    <div style="text-align:center;margin-bottom:48px">
       <div class="section-label">FAQ</div>
       <h2 class="section-title">Common questions<br>answered honestly</h2>
     </div>
     <div class="faq-list reveal">
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">Do I need to buy hosting or a domain?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>We can handle everything for you. Hosting starts at $12/month (optional), and domains typically cost $12–$15/year. If you already have a domain, we'll use that. We guide you through every step and make it simple.</p></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">What if I don't like the preview?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>No problem at all. The preview is completely free and there's zero obligation. If you don't love it, you simply don't pay — no questions asked. We'd rather earn your trust than pressure you into anything.</p></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">How fast will I actually get my website?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Most sites are delivered within 24–72 hours of you sending us your details. The exact speed depends on how quickly you send content and photos, but we move fast. Premium plan orders are typically done within 24 hours.</p></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">Can I update the site myself after it's live?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Yes. We build on platforms that are easy to update, or we can make updates for you for a small fee. Most clients just message us for small changes — we're fast and responsive. Premium plan clients get 30 days of free updates included.</p></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">Will my website show up on Google?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>We include basic local SEO setup in all plans — proper titles, meta descriptions, your location, and schema markup so Google knows what you do and where. Google Business Profile setup is available as an add-on.</p></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">What do you need from me to get started?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Just the basics: your business name, what you offer, your location, your phone number, and any photos or logos you have. If you don't have photos, we can work with stock images. The briefing takes about 5 minutes.</p></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">Do you offer payment plans?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Yes — for Pro and Premium plans we offer a 50/50 split: half when you approve the preview, half when the site goes live. Just mention it when you fill out the form and we'll set that up for you.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">Do I need to buy hosting or a domain?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><p>We handle everything. Hosting starts at $12/month (optional) and domains are $12–$15/year. If you already have a domain, we'll use it. We guide you through every step.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">What if I don't like the preview?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><p>No problem. The preview is completely free and there's zero obligation. If you don't love it, you don't pay. We'd rather earn your trust than pressure you into anything.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">How fast will I actually get my website?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><p>Most sites are delivered within 24–72 hours after you send us your details. Speed depends partly on how quickly you share content and photos. Premium plan orders are typically done within 24 hours.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">Can I update the site myself after it's live?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><p>Yes. We build on platforms that are easy to update, or we can make small changes for a nominal fee. Most clients just message us — we're responsive. Premium clients get 30 days of free updates.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">Will my website show up on Google?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><p>We include basic local SEO in all plans — proper titles, descriptions, location data, and schema markup so Google knows what you do and where. Google Business Profile setup is available as an add-on.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">What do you need from me to get started?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><p>Just the basics: business name, what you offer, your location, phone number, and any photos or logos. No photos? We can use stock images. The whole briefing takes about 5 minutes.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">Do you offer payment plans?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><p>Yes — for Pro and Premium plans we offer a 50/50 split: half when you approve the preview, half when the site goes live. Just mention it in the form and we'll set it up.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section id="cta" aria-label="Contact and get started">
+<!-- ══ CTA ════════════════════════════ -->
+<section id="cta" class="cta-section" aria-label="Get started">
   <div class="container">
     <div class="cta-badge">🎯 Limited preview slots available this week</div>
     <h2 class="section-title">Ready to get more<br>customers online?</h2>
-    <p class="section-sub" style="margin:0 auto 40px">Get a free, no-obligation website preview. See exactly what your site will look like before spending a dollar.</p>
+    <p class="section-sub" style="margin:0 auto 36px">Free, no-obligation website preview. See exactly what your site will look like before spending a dollar.</p>
     <div class="contact-box reveal">
       <h3>Get Your Free Website Preview</h3>
       <p>Takes 2 minutes. Preview delivered within 24 hours.</p>
       <div class="form-group">
         <div class="form-row">
-          <input type="text"  class="form-input" id="f-name" aria-label="Your name" aria-required="true" placeholder="Your name" autocomplete="name">
+          <input type="text"  class="form-input" id="f-name"  aria-label="Your name" aria-required="true" placeholder="Your name" autocomplete="name">
           <input type="tel"   class="form-input" id="f-phone" aria-label="Phone number" aria-required="true" placeholder="Phone number" autocomplete="tel">
         </div>
         <input type="email" class="form-input" id="f-email" aria-label="Email address" aria-required="true" placeholder="Email address" autocomplete="email">
-        <input type="text"  class="form-input" id="f-biz" aria-label="Business name" aria-required="true" placeholder="Business name (e.g. Tony's Barbershop)">
+        <input type="text"  class="form-input" id="f-biz"   aria-label="Business name" aria-required="true" placeholder="Business name (e.g. Tony's Barbershop)">
         <select class="form-select" id="f-type" aria-label="Business type" aria-required="true">
           <option value="" disabled selected>What type of business? ↓</option>
           <option>Barbershop / Hair Salon</option>
@@ -652,6 +897,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
           <option>Cleaning Service</option>
           <option>Nail Salon / Beauty</option>
           <option>Auto / Mechanic</option>
+          <option>Gym / Fitness</option>
           <option>Contractor / Trades</option>
           <option>Health / Wellness</option>
           <option>Retail / Shop</option>
@@ -659,7 +905,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
         </select>
       </div>
       <button class="btn-submit" id="submitBtn" onclick="handleSubmit()"><span id="submitText">Send Me My Free Preview →</span></button>
-      <p class="cta-guarantee">🔒 No payment required. No commitment. Zero pressure.</p>
+      <p class="cta-guarantee">🔒 No payment. No commitment. Zero pressure.</p>
     </div>
     <div class="cta-links">
       <a href="mailto:hello@localsiteco.com" class="cta-link">📧 hello@localsiteco.com</a>
@@ -671,29 +917,29 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
 
 </main>
 
-<!-- FOOTER -->
+<!-- ══ FOOTER ═════════════════════════ -->
 <footer>
   <div class="f-links">
     <a href="#home">Home</a><a href="#value">Why Us</a><a href="#demos">Sample Work</a>
     <a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#cta">Contact</a>
   </div>
-  <div class="f-copy">© 2025 <span>LocalSite Co.</span> — Websites that bring you more customers.<br>Serving barbershops, restaurants, salons, cleaners, and local businesses everywhere.</div>
+  <div class="f-copy">© 2025 <span>LocalSite Co.</span> — Websites that bring you more customers.<br>Barbershops · Restaurants · Salons · Cleaners · Contractors · And more.</div>
 </footer>
 
-<!-- STICKY MOBILE CTA -->
-<div class="sticky-cta" id="stickyCta">
-  <div class="sticky-cta-text"><strong>Free Website Preview</strong>No commitment · 24-hour delivery</div>
-  <button class="sticky-cta-btn" onclick="scrollToCta()">Get It Free →</button>
+<!-- ══ STICKY MOBILE CTA ════════════ -->
+<div class="sticky-cta" id="stickyCta" aria-hidden="true">
+  <div class="sticky-cta-text"><strong>Free Website Preview</strong>No commitment · 24-hr delivery</div>
+  <button class="sticky-btn" onclick="scrollToCta()">Get It Free →</button>
 </div>
 
-<!-- WHATSAPP -->
+<!-- ══ WHATSAPP ══════════════════════ -->
 <a href="https://wa.me/15555555555?text=Hi!%20I'm%20interested%20in%20a%20free%20website%20preview%20for%20my%20business." class="wa-btn" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-  <svg viewBox="0 0 24 24" fill="white" width="26" height="26"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <svg viewBox="0 0 24 24" fill="white" width="26" height="26" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   <span class="wa-tip">💬 Chat on WhatsApp</span>
 </a>
 
-<!-- DEMO MODAL -->
-<div class="modal-bg" id="demoModal" onclick="closeMBg(event)">
+<!-- ══ DEMO MODAL ════════════════════ -->
+<div class="modal-bg" id="demoModal" onclick="closeMBg(event)" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-header">
       <h3 id="modalTitle" tabindex="-1">Sample Website Preview</h3>
@@ -701,13 +947,13 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
     </div>
     <div class="modal-body">
       <div class="mock-browser">
-        <div class="mock-bar">
+        <div class="mock-bar" aria-hidden="true">
           <div class="mock-dots"><div class="mock-dot mock-dot-r"></div><div class="mock-dot mock-dot-y"></div><div class="mock-dot mock-dot-g"></div></div>
           <div class="mock-url" id="mockUrl">localsiteco.com/sample</div>
         </div>
         <div class="mock-content" id="mockContent"></div>
       </div>
-      <div style="text-align:center;margin-top:26px">
+      <div style="text-align:center;margin-top:22px">
         <p style="color:var(--muted);font-size:0.84rem;margin-bottom:14px">Want a site like this for your business?</p>
         <button class="btn-primary" onclick="closeModal();scrollToCta()">Get Your Free Preview →</button>
       </div>
@@ -715,38 +961,133 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
   </div>
 </div>
 
-<!-- TOAST -->
+<!-- ══ TOAST ══════════════════════════ -->
 <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
 <script>
-// ── REVEAL ──
-const allR = document.querySelectorAll('.reveal,.reveal-l,.reveal-r');
-const rio = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    const sibs = [...e.target.parentElement.children].filter(c => c.classList.contains('reveal')||c.classList.contains('reveal-l')||c.classList.contains('reveal-r'));
-    setTimeout(() => e.target.classList.add('visible'), sibs.indexOf(e.target) * 90);
-    rio.unobserve(e.target);
-  });
-}, { threshold: 0.1 });
-allR.forEach(r => rio.observe(r));
-
-// ── NAV / SCROLL ──
-const nav = document.getElementById('mainNav');
-const navAs = document.querySelectorAll('.nav-links a');
-const secs = document.querySelectorAll('section[id]');
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  nav.classList.toggle('scrolled', y > 60);
-  document.getElementById('stickyCta').classList.toggle('show', y > 600);
-  let cur = '';
-  secs.forEach(s => { if (y >= s.offsetTop - 130) cur = s.id; });
-  navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+// ── THEME TOGGLE ──────────────────────────────
+const html = document.documentElement;
+const themeBtn = document.getElementById('themeToggle');
+const saved = localStorage.getItem('theme') || 'dark';
+html.setAttribute('data-theme', saved);
+themeBtn.textContent = saved === 'dark' ? '🌙' : '☀️';
+themeBtn.addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  themeBtn.textContent = next === 'dark' ? '🌙' : '☀️';
+  localStorage.setItem('theme', next);
 });
 
-function scrollToCta(){ document.getElementById('cta').scrollIntoView({behavior:'smooth'}) }
+// ── MOBILE MENU ───────────────────────────────
+const ham = document.getElementById('hamburger');
+const mm  = document.getElementById('mobileMenu');
+function closeMobileMenu() {
+  ham.classList.remove('open');
+  mm.classList.remove('open');
+  ham.setAttribute('aria-expanded','false');
+  mm.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+ham.addEventListener('click', () => {
+  const open = !mm.classList.contains('open');
+  ham.classList.toggle('open', open);
+  mm.classList.toggle('open', open);
+  ham.setAttribute('aria-expanded', String(open));
+  mm.setAttribute('aria-hidden', String(!open));
+  document.body.style.overflow = open ? 'hidden' : '';
+});
 
-// ── FAQ ──
+// ── NAV SCROLL & ACTIVE ───────────────────────
+const nav = document.getElementById('mainNav');
+const navAs = document.querySelectorAll('.nav-center a');
+const secs = document.querySelectorAll('section[id]');
+function onScroll() {
+  const y = window.scrollY;
+  nav.classList.toggle('scrolled', y > 50);
+  const sticky = document.getElementById('stickyCta');
+  const show = y > 500;
+  sticky.classList.toggle('show', show);
+  sticky.setAttribute('aria-hidden', String(!show));
+  let cur = '';
+  secs.forEach(s => { if (y >= s.offsetTop - 140) cur = s.id; });
+  navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+
+function scrollToCta() { document.getElementById('cta').scrollIntoView({ behavior: 'smooth' }); }
+
+// ── STAT COUNTERS ─────────────────────────────
+function animateCount(el) {
+  const target = parseInt(el.dataset.target);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  const duration = 1400;
+  const start = performance.now();
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = prefix + Math.round(ease * target) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+const statIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { animateCount(e.target); statIO.unobserve(e.target); }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stat-num[data-target]').forEach(el => statIO.observe(el));
+
+// ── SCROLL REVEAL ─────────────────────────────
+const allR = document.querySelectorAll('.reveal,.reveal-l,.reveal-r');
+const rio = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const sibs = [...e.target.parentElement.children].filter(c =>
+      c.classList.contains('reveal') || c.classList.contains('reveal-l') || c.classList.contains('reveal-r')
+    );
+    setTimeout(() => e.target.classList.add('visible'), sibs.indexOf(e.target) * 80);
+    rio.unobserve(e.target);
+  });
+}, { threshold: 0.08 });
+allR.forEach(r => rio.observe(r));
+
+// ── CAROUSEL ──────────────────────────────────
+const track = document.getElementById('carouselTrack');
+const dotsWrap = document.getElementById('carouselDots');
+const cards = track.querySelectorAll('.demo-card');
+const total = cards.length;
+let dots = [];
+
+for (let i = 0; i < total; i++) {
+  const d = document.createElement('button');
+  d.className = 'cdot' + (i === 0 ? ' active' : '');
+  d.setAttribute('aria-label', `Go to demo ${i + 1}`);
+  d.onclick = () => { cards[i].scrollIntoView({ behavior:'smooth', block:'nearest', inline:'start' }); };
+  dotsWrap.appendChild(d);
+  dots.push(d);
+}
+const cio = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && e.intersectionRatio > 0.5) {
+      const idx = [...cards].indexOf(e.target);
+      dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+    }
+  });
+}, { root: track, threshold: 0.5 });
+cards.forEach(c => cio.observe(c));
+
+// Keyboard nav on carousel
+track.addEventListener('keydown', e => {
+  const focused = document.activeElement;
+  const idx = [...cards].indexOf(focused);
+  if (idx === -1) return;
+  if (e.key === 'ArrowRight' && idx < total - 1) { e.preventDefault(); cards[idx+1].focus(); cards[idx+1].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'}); }
+  if (e.key === 'ArrowLeft'  && idx > 0)          { e.preventDefault(); cards[idx-1].focus(); cards[idx-1].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'}); }
+  if (e.key === 'Enter' || e.key === ' ')          { e.preventDefault(); cards[idx].click(); }
+});
+
+// ── FAQ ───────────────────────────────────────
 function toggleFaq(btn) {
   const item = btn.parentElement;
   const isOpen = item.classList.contains('open');
@@ -754,20 +1095,16 @@ function toggleFaq(btn) {
     i.classList.remove('open');
     i.querySelector('.faq-q').setAttribute('aria-expanded','false');
   });
-  if (!isOpen) {
-    item.classList.add('open');
-    btn.setAttribute('aria-expanded','true');
-  }
+  if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
 }
 
-// ── MODAL ──
+// ── DEMO MODAL ────────────────────────────────
 const demos = {
-  barber:{
-    title:'✂️ Barbershop Website — Sample',url:'localsiteco.com/sample-barbershop',
+  barber: { title:'✂️ Barbershop Website — Sample', url:'localsiteco.com/sample-barbershop',
     html:`<div style="font-family:var(--fb)">
       <div class="m-hero" style="background:linear-gradient(135deg,#0d0820,#1e1045)">
         <div class="m-logo" style="color:#fff">✂️ Tony's Cuts</div>
-        <div class="m-sub" style="color:#a78bfa">📍 Downtown · Open Mon–Sat 9am–7pm</div>
+        <div class="m-sub" style="color:#a78bfa">📍 Downtown · Mon–Sat 9am–7pm</div>
         <span class="m-btn" style="background:#7c3aed">📞 Book Your Cut</span>
       </div>
       <div style="font-size:0.78rem;color:#a78bfa;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Our Services</div>
@@ -775,38 +1112,29 @@ const demos = {
         <div class="m-card" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.2)"><div class="m-card-name" style="color:#c4b5fd">Fade</div><div class="m-card-price">$25</div></div>
         <div class="m-card" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.2)"><div class="m-card-name" style="color:#c4b5fd">Full Cut</div><div class="m-card-price">$30</div></div>
         <div class="m-card" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.2)"><div class="m-card-name" style="color:#c4b5fd">Beard</div><div class="m-card-price">$15</div></div>
-        <div class="m-card" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.2)"><div class="m-card-name" style="color:#c4b5fd">Kid's Cut</div><div class="m-card-price">$20</div></div>
+        <div class="m-card" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.2)"><div class="m-card-name" style="color:#c4b5fd">Kid's</div><div class="m-card-price">$20</div></div>
         <div class="m-card" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.2)"><div class="m-card-name" style="color:#c4b5fd">Hot Shave</div><div class="m-card-price">$35</div></div>
         <div class="m-card" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.2)"><div class="m-card-name" style="color:#c4b5fd">Shape-Up</div><div class="m-card-price">$15</div></div>
       </div>
-      <div class="m-footer-bar" style="background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.2)">
-        <div style="font-size:0.76rem;color:#c4b5fd;margin-bottom:4px">Walk-ins welcome · Online booking available</div>
-        <div style="font-size:0.7rem;color:#888">⭐⭐⭐⭐⭐ "Best fade in the city" — Google Reviews</div>
-      </div>
-    </div>`
-  },
-  resto:{
-    title:'🍽️ Restaurant Website — Sample',url:'localsiteco.com/sample-restaurant',
+      <div class="m-footer" style="background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.2)"><div style="font-size:0.75rem;color:#c4b5fd;margin-bottom:3px">Walk-ins welcome · Online booking available</div><div style="font-size:0.7rem;color:#888">⭐⭐⭐⭐⭐ "Best fade in the city" — Google Reviews</div></div>
+    </div>` },
+  resto: { title:'🍽️ Restaurant Website — Sample', url:'localsiteco.com/sample-restaurant',
     html:`<div style="font-family:var(--fb)">
       <div class="m-hero" style="background:linear-gradient(135deg,#1a0505,#3d0f0f)">
         <div class="m-logo" style="color:#fbbf24">La Cocina</div>
-        <div class="m-sub" style="color:#fca5a5">🌮 Authentic Mexican · Dine In · Takeout · Delivery</div>
+        <div class="m-sub" style="color:#fca5a5">🌮 Authentic Mexican · Dine In · Takeout</div>
         <span class="m-btn" style="background:#dc2626">📋 Reserve a Table</span>
       </div>
       <div style="font-size:0.78rem;color:#fcd34d;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Popular Dishes</div>
       <div class="m-row" style="grid-template-columns:1fr 1fr">
         <div class="m-card" style="background:rgba(220,38,38,0.06);border-color:rgba(220,38,38,0.15)"><div class="m-card-name" style="color:#fcd34d">🌮 Street Tacos</div><div class="m-card-desc">Al pastor, onion, cilantro</div><div class="m-card-price">$12.99</div></div>
         <div class="m-card" style="background:rgba(220,38,38,0.06);border-color:rgba(220,38,38,0.15)"><div class="m-card-name" style="color:#fcd34d">🫔 Burrito Bowl</div><div class="m-card-desc">Rice, beans, choice of protein</div><div class="m-card-price">$14.99</div></div>
-        <div class="m-card" style="background:rgba(220,38,38,0.06);border-color:rgba(220,38,38,0.15)"><div class="m-card-name" style="color:#fcd34d">🍲 Birria Ramen</div><div class="m-card-desc">Consommé broth, beef, cheese</div><div class="m-card-price">$17.99</div></div>
+        <div class="m-card" style="background:rgba(220,38,38,0.06);border-color:rgba(220,38,38,0.15)"><div class="m-card-name" style="color:#fcd34d">🍲 Birria Ramen</div><div class="m-card-desc">Consommé, beef, cheese</div><div class="m-card-price">$17.99</div></div>
         <div class="m-card" style="background:rgba(220,38,38,0.06);border-color:rgba(220,38,38,0.15)"><div class="m-card-name" style="color:#fcd34d">🥑 Guac & Chips</div><div class="m-card-desc">House-made daily, fresh lime</div><div class="m-card-price">$8.99</div></div>
       </div>
-      <div class="m-footer-bar" style="background:rgba(220,38,38,0.06);border:1px solid rgba(220,38,38,0.15);color:#fca5a5;font-size:0.72rem">
-        📍 123 Main St · Open Daily 11am–10pm · (555) 234-5678
-      </div>
-    </div>`
-  },
-  clean:{
-    title:'🧹 Cleaning Service Website — Sample',url:'localsiteco.com/sample-cleaning',
+      <div class="m-footer" style="background:rgba(220,38,38,0.06);border:1px solid rgba(220,38,38,0.15);color:#fca5a5">📍 123 Main St · Open Daily 11am–10pm · (555) 234-5678</div>
+    </div>` },
+  clean: { title:'🧹 Cleaning Service Website — Sample', url:'localsiteco.com/sample-cleaning',
     html:`<div style="font-family:var(--fb)">
       <div class="m-hero" style="background:linear-gradient(135deg,#032020,#064040)">
         <div class="m-logo" style="color:#fff">🧹 ClearShine Cleaning</div>
@@ -815,19 +1143,17 @@ const demos = {
       </div>
       <div style="font-size:0.78rem;color:#6ee7b7;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">What We Clean</div>
       <div class="m-row" style="grid-template-columns:1fr">
-        <div class="m-card" style="background:rgba(5,150,105,0.08);border-color:rgba(5,150,105,0.2);display:flex;align-items:center;gap:8px"><span style="color:#10b981;font-weight:700">✓</span><span style="color:#d1d5db;font-size:0.8rem">Home Deep Cleaning — from $120</span></div>
-        <div class="m-card" style="background:rgba(5,150,105,0.08);border-color:rgba(5,150,105,0.2);display:flex;align-items:center;gap:8px"><span style="color:#10b981;font-weight:700">✓</span><span style="color:#d1d5db;font-size:0.8rem">Weekly / Bi-Weekly Maintenance — from $80</span></div>
-        <div class="m-card" style="background:rgba(5,150,105,0.08);border-color:rgba(5,150,105,0.2);display:flex;align-items:center;gap:8px"><span style="color:#10b981;font-weight:700">✓</span><span style="color:#d1d5db;font-size:0.8rem">Move-In / Move-Out Cleaning — from $180</span></div>
-        <div class="m-card" style="background:rgba(5,150,105,0.08);border-color:rgba(5,150,105,0.2);display:flex;align-items:center;gap:8px"><span style="color:#10b981;font-weight:700">✓</span><span style="color:#d1d5db;font-size:0.8rem">Office & Commercial Spaces — Custom quote</span></div>
+        <div class="m-card" style="background:rgba(5,150,105,0.08);border-color:rgba(5,150,105,0.2);display:flex;align-items:center;gap:8px"><span style="color:#10b981;font-weight:700;flex-shrink:0">✓</span><span style="color:#d1d5db;font-size:0.82rem">Home Deep Cleaning — from $120</span></div>
+        <div class="m-card" style="background:rgba(5,150,105,0.08);border-color:rgba(5,150,105,0.2);display:flex;align-items:center;gap:8px"><span style="color:#10b981;font-weight:700;flex-shrink:0">✓</span><span style="color:#d1d5db;font-size:0.82rem">Weekly Maintenance — from $80</span></div>
+        <div class="m-card" style="background:rgba(5,150,105,0.08);border-color:rgba(5,150,105,0.2);display:flex;align-items:center;gap:8px"><span style="color:#10b981;font-weight:700;flex-shrink:0">✓</span><span style="color:#d1d5db;font-size:0.82rem">Move-In / Move-Out — from $180</span></div>
+        <div class="m-card" style="background:rgba(5,150,105,0.08);border-color:rgba(5,150,105,0.2);display:flex;align-items:center;gap:8px"><span style="color:#10b981;font-weight:700;flex-shrink:0">✓</span><span style="color:#d1d5db;font-size:0.82rem">Commercial Spaces — Custom quote</span></div>
       </div>
-      <div class="m-row" style="grid-template-columns:1fr 1fr;margin-top:-2px">
-        <div class="m-footer-bar" style="background:rgba(5,150,105,0.08);border:1px solid rgba(5,150,105,0.2);color:#6ee7b7;font-size:0.72rem">✓ Fully Insured & Bonded</div>
-        <div class="m-footer-bar" style="background:rgba(5,150,105,0.08);border:1px solid rgba(5,150,105,0.2);color:#6ee7b7;font-size:0.72rem">⭐ 4.9 Star on Google</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div class="m-footer" style="background:rgba(5,150,105,0.08);border:1px solid rgba(5,150,105,0.2);color:#6ee7b7">✓ Fully Insured</div>
+        <div class="m-footer" style="background:rgba(5,150,105,0.08);border:1px solid rgba(5,150,105,0.2);color:#6ee7b7">⭐ 4.9 on Google</div>
       </div>
-    </div>`
-  },
-  salon:{
-    title:'💅 Hair Salon Website — Sample',url:'localsiteco.com/sample-salon',
+    </div>` },
+  salon: { title:'💅 Hair Salon Website — Sample', url:'localsiteco.com/sample-salon',
     html:`<div style="font-family:var(--fb)">
       <div class="m-hero" style="background:linear-gradient(135deg,#1a0520,#3d0f44)">
         <div class="m-logo" style="color:#f9a8d4">💅 Luxe Hair Studio</div>
@@ -841,85 +1167,156 @@ const demos = {
         <div class="m-card" style="background:rgba(157,23,77,0.1);border-color:rgba(157,23,77,0.25)"><div class="m-card-name" style="color:#f9a8d4">Blowout</div><div class="m-card-price">from $45</div></div>
         <div class="m-card" style="background:rgba(157,23,77,0.1);border-color:rgba(157,23,77,0.25)"><div class="m-card-name" style="color:#f9a8d4">Extensions</div><div class="m-card-price">from $200</div></div>
       </div>
-      <div class="m-footer-bar" style="background:rgba(157,23,77,0.08);border:1px solid rgba(157,23,77,0.2);color:#f9a8d4;font-size:0.72rem">
-        📸 Follow @LuxeHairStudio · 📍 456 Glamour Ave · Book online 24/7
+      <div class="m-footer" style="background:rgba(157,23,77,0.08);border:1px solid rgba(157,23,77,0.2);color:#f9a8d4">📸 @LuxeHairStudio · 📍 456 Glamour Ave · Book 24/7</div>
+    </div>` },
+  auto: { title:'🔧 Auto Shop Website — Sample', url:'localsiteco.com/sample-auto',
+    html:`<div style="font-family:var(--fb)">
+      <div class="m-hero" style="background:linear-gradient(135deg,#0a0e18,#142040)">
+        <div class="m-logo" style="color:#93c5fd">🔧 City Auto Repair</div>
+        <div class="m-sub" style="color:#60a5fa">ASE Certified · All Makes & Models</div>
+        <span class="m-btn" style="background:#1d4ed8">📞 Get a Quote</span>
       </div>
-    </div>`
-  }
+      <div style="font-size:0.78rem;color:#60a5fa;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Our Services</div>
+      <div class="m-row" style="grid-template-columns:1fr 1fr">
+        <div class="m-card" style="background:rgba(29,78,216,0.08);border-color:rgba(29,78,216,0.2)"><div class="m-card-name" style="color:#93c5fd">Oil Change</div><div class="m-card-price">from $39</div></div>
+        <div class="m-card" style="background:rgba(29,78,216,0.08);border-color:rgba(29,78,216,0.2)"><div class="m-card-name" style="color:#93c5fd">Brake Service</div><div class="m-card-price">from $99</div></div>
+        <div class="m-card" style="background:rgba(29,78,216,0.08);border-color:rgba(29,78,216,0.2)"><div class="m-card-name" style="color:#93c5fd">Tire Rotation</div><div class="m-card-price">from $29</div></div>
+        <div class="m-card" style="background:rgba(29,78,216,0.08);border-color:rgba(29,78,216,0.2)"><div class="m-card-name" style="color:#93c5fd">Engine Diag.</div><div class="m-card-price">from $59</div></div>
+      </div>
+      <div class="m-footer" style="background:rgba(29,78,216,0.06);border:1px solid rgba(29,78,216,0.18);color:#93c5fd">📍 789 Motor Blvd · Mon–Sat 8am–6pm · ⭐ 4.8 Google</div>
+    </div>` },
+  gym: { title:'💪 Gym / Fitness Website — Sample', url:'localsiteco.com/sample-gym',
+    html:`<div style="font-family:var(--fb)">
+      <div class="m-hero" style="background:linear-gradient(135deg,#140808,#3d1414)">
+        <div class="m-logo" style="color:#fca5a5">💪 Iron District Gym</div>
+        <div class="m-sub" style="color:#f87171">No contracts · Open 24/7</div>
+        <span class="m-btn" style="background:#dc2626">🎯 Start Free Trial</span>
+      </div>
+      <div style="font-size:0.78rem;color:#f87171;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Membership Plans</div>
+      <div class="m-row" style="grid-template-columns:repeat(3,1fr)">
+        <div class="m-card" style="background:rgba(220,38,38,0.08);border-color:rgba(220,38,38,0.18)"><div class="m-card-name" style="color:#fca5a5">Basic</div><div class="m-card-price">$29/mo</div></div>
+        <div class="m-card" style="background:rgba(220,38,38,0.14);border-color:rgba(220,38,38,0.28)"><div class="m-card-name" style="color:#fca5a5">Pro</div><div class="m-card-price">$49/mo</div></div>
+        <div class="m-card" style="background:rgba(220,38,38,0.08);border-color:rgba(220,38,38,0.18)"><div class="m-card-name" style="color:#fca5a5">All-In</div><div class="m-card-price">$79/mo</div></div>
+      </div>
+      <div style="font-size:0.78rem;color:#f87171;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;margin-top:14px">Today's Classes</div>
+      <div class="m-row" style="grid-template-columns:1fr">
+        <div class="m-card" style="background:rgba(220,38,38,0.06);border-color:rgba(220,38,38,0.15);display:flex;justify-content:space-between;align-items:center"><span style="color:#fca5a5;font-size:0.8rem;font-weight:600">6am — HIIT Bootcamp</span><span style="color:#f87171;font-size:0.72rem">12 spots left</span></div>
+        <div class="m-card" style="background:rgba(220,38,38,0.06);border-color:rgba(220,38,38,0.15);display:flex;justify-content:space-between;align-items:center"><span style="color:#fca5a5;font-size:0.8rem;font-weight:600">9am — Yoga Flow</span><span style="color:#f87171;font-size:0.72rem">8 spots left</span></div>
+      </div>
+    </div>` },
+  nail: { title:'💎 Nail Salon Website — Sample', url:'localsiteco.com/sample-nail',
+    html:`<div style="font-family:var(--fb)">
+      <div class="m-hero" style="background:linear-gradient(135deg,#1a0818,#4a1535)">
+        <div class="m-logo" style="color:#f0abfc">💎 Glamour Nails Studio</div>
+        <div class="m-sub" style="color:#d946ef">Gel · Acrylic · Nail Art · Pedicures</div>
+        <span class="m-btn" style="background:#a21caf">📅 Book Online</span>
+      </div>
+      <div style="font-size:0.78rem;color:#d946ef;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Services</div>
+      <div class="m-row" style="grid-template-columns:1fr 1fr">
+        <div class="m-card" style="background:rgba(162,28,175,0.1);border-color:rgba(162,28,175,0.22)"><div class="m-card-name" style="color:#f0abfc">Gel Manicure</div><div class="m-card-price">from $35</div></div>
+        <div class="m-card" style="background:rgba(162,28,175,0.1);border-color:rgba(162,28,175,0.22)"><div class="m-card-name" style="color:#f0abfc">Acrylic Full Set</div><div class="m-card-price">from $55</div></div>
+        <div class="m-card" style="background:rgba(162,28,175,0.1);border-color:rgba(162,28,175,0.22)"><div class="m-card-name" style="color:#f0abfc">Pedicure</div><div class="m-card-price">from $40</div></div>
+        <div class="m-card" style="background:rgba(162,28,175,0.1);border-color:rgba(162,28,175,0.22)"><div class="m-card-name" style="color:#f0abfc">Nail Art</div><div class="m-card-price">from $15</div></div>
+      </div>
+      <div class="m-footer" style="background:rgba(162,28,175,0.08);border:1px solid rgba(162,28,175,0.2);color:#f0abfc">📸 @GlamourNailsStudio · ⭐ 4.9 · Book 24/7 online</div>
+    </div>` },
+  contra: { title:'🏠 Contractor Website — Sample', url:'localsiteco.com/sample-contractor',
+    html:`<div style="font-family:var(--fb)">
+      <div class="m-hero" style="background:linear-gradient(135deg,#100e08,#352c10)">
+        <div class="m-logo" style="color:#fde68a">🏠 Peak Build Contractors</div>
+        <div class="m-sub" style="color:#fbbf24">Licensed · Insured · Free Estimates</div>
+        <span class="m-btn" style="background:#b45309">📋 Get Free Estimate</span>
+      </div>
+      <div style="font-size:0.78rem;color:#fbbf24;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Our Services</div>
+      <div class="m-row" style="grid-template-columns:1fr 1fr">
+        <div class="m-card" style="background:rgba(180,83,9,0.08);border-color:rgba(180,83,9,0.2)"><div class="m-card-name" style="color:#fde68a">Kitchen Remodel</div><div class="m-card-price">Custom quote</div></div>
+        <div class="m-card" style="background:rgba(180,83,9,0.08);border-color:rgba(180,83,9,0.2)"><div class="m-card-name" style="color:#fde68a">Bathroom Reno</div><div class="m-card-price">Custom quote</div></div>
+        <div class="m-card" style="background:rgba(180,83,9,0.08);border-color:rgba(180,83,9,0.2)"><div class="m-card-name" style="color:#fde68a">Deck / Patio</div><div class="m-card-price">Custom quote</div></div>
+        <div class="m-card" style="background:rgba(180,83,9,0.08);border-color:rgba(180,83,9,0.2)"><div class="m-card-name" style="color:#fde68a">New Construction</div><div class="m-card-price">Custom quote</div></div>
+      </div>
+      <div class="m-footer" style="background:rgba(180,83,9,0.06);border:1px solid rgba(180,83,9,0.18);color:#fde68a">✓ Licensed & Insured · ⭐ 4.9 Google · 15 yrs experience</div>
+    </div>` }
 };
 
-
-// ── MODAL FOCUS TRAP ──
+let _modalTrigger = null;
 function trapFocus(modal) {
-  const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-  const first = focusable[0], last = focusable[focusable.length-1];
-  modal.addEventListener('keydown', function handler(e) {
+  const focusable = modal.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+  const first = focusable[0], last = focusable[focusable.length - 1];
+  modal.addEventListener('keydown', function h(e) {
     if (e.key !== 'Tab') return;
-    if (e.shiftKey) { if (document.activeElement===first){e.preventDefault();last.focus();} }
-    else { if (document.activeElement===last){e.preventDefault();first.focus();} }
+    if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+    else { if (document.activeElement === last) { e.preventDefault(); first.focus(); } }
   });
 }
-function openModal(type,triggerEl){
+function openModal(type, triggerEl) {
   _modalTrigger = triggerEl || document.activeElement;
-  const d=demos[type];
-  document.getElementById('modalTitle').textContent=d.title;
-  document.getElementById('mockUrl').textContent=d.url;
-  document.getElementById('mockContent').innerHTML=d.html;
-  document.getElementById('demoModal').classList.add('open');
-  document.body.style.overflow='hidden';
-  const modalEl=document.querySelector('.modal');
-  trapFocus(modalEl);
-  setTimeout(()=>document.getElementById('modalTitle').focus(),100);
+  const d = demos[type];
+  if (!d) return;
+  document.getElementById('modalTitle').textContent = d.title;
+  document.getElementById('mockUrl').textContent = d.url;
+  document.getElementById('mockContent').innerHTML = d.html;
+  const bg = document.getElementById('demoModal');
+  bg.classList.add('open');
+  bg.removeAttribute('aria-hidden');
+  document.body.style.overflow = 'hidden';
+  trapFocus(bg.querySelector('.modal'));
+  setTimeout(() => document.getElementById('modalTitle').focus(), 80);
 }
-let _modalTrigger = null;
-function closeModal(){
-  document.getElementById('demoModal').classList.remove('open');
-  document.body.style.overflow='';
-  if (_modalTrigger) { _modalTrigger.focus(); _modalTrigger=null; }
+function closeModal() {
+  const bg = document.getElementById('demoModal');
+  bg.classList.remove('open');
+  bg.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  if (_modalTrigger) { _modalTrigger.focus(); _modalTrigger = null; }
 }
-function closeMBg(e){ if(e.target===document.getElementById('demoModal')) closeModal(); }
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+function closeMBg(e) { if (e.target === document.getElementById('demoModal')) closeModal(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-// ── FORM ──
-function vf(el){
-  const v=el.value.trim().length>0;
-  el.classList.toggle('valid',v);
-  el.classList.toggle('error',!v);
+// ── FORM ──────────────────────────────────────
+function vf(el) {
+  const v = el.value.trim().length > 0;
+  el.classList.toggle('valid', v);
+  el.classList.toggle('error', !v);
   return v;
 }
-['f-name','f-phone','f-email','f-biz'].forEach(id=>{
-  const el=document.getElementById(id);
-  el.addEventListener('blur',()=>vf(el));
-  el.addEventListener('input',()=>{ if(el.value.trim()){el.classList.add('valid');el.classList.remove('error')} });
+['f-name','f-phone','f-email','f-biz'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('blur', () => vf(el));
+  el.addEventListener('input', () => { if (el.value.trim()) { el.classList.add('valid'); el.classList.remove('error'); } });
 });
-
-function handleSubmit(){
-  let ok=true;
-  ['f-name','f-phone','f-email','f-biz'].forEach(id=>{ if(!vf(document.getElementById(id))) ok=false; });
-  const sel=document.getElementById('f-type');
-  if(!sel.value){sel.style.borderColor='rgba(255,90,90,0.5)';ok=false;}
-  else sel.style.borderColor='';
-  if(!ok){ document.getElementById('f-name').focus(); return; }
-  const btn=document.getElementById('submitBtn');
-  const txt=document.getElementById('submitText');
-  btn.disabled=true;
-  txt.textContent='Sending your request...';
-  setTimeout(()=>{
-    txt.innerHTML='✓ Request Received!';
-    btn.style.background='#00b87a';
-    ['f-name','f-phone','f-email','f-biz'].forEach(id=>{ const el=document.getElementById(id); el.value=''; el.classList.remove('valid','error'); });
-    sel.value='';
+function handleSubmit() {
+  let ok = true;
+  ['f-name','f-phone','f-email','f-biz'].forEach(id => { if (!vf(document.getElementById(id))) ok = false; });
+  const sel = document.getElementById('f-type');
+  if (!sel.value) { sel.style.borderColor = 'rgba(255,90,90,0.55)'; ok = false; }
+  else sel.style.borderColor = '';
+  if (!ok) { document.getElementById('f-name').focus(); return; }
+  const btn = document.getElementById('submitBtn');
+  const txt = document.getElementById('submitText');
+  btn.disabled = true;
+  txt.textContent = 'Sending your request…';
+  setTimeout(() => {
+    txt.textContent = '✓ Request Received!';
+    btn.style.background = '#00b87a';
+    ['f-name','f-phone','f-email','f-biz'].forEach(id => {
+      const el = document.getElementById(id); el.value = ''; el.classList.remove('valid','error');
+    });
+    sel.value = '';
     showToast('🎉 Preview on the way! Check your email within 24 hours.');
-    setTimeout(()=>{ btn.disabled=false; btn.style.background=''; txt.textContent='Send Me My Free Preview →'; }, 5000);
-  },1400);
+    setTimeout(() => { btn.disabled = false; btn.style.background = ''; txt.textContent = 'Send Me My Free Preview →'; }, 5000);
+  }, 1400);
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 5000);
 }
 
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),5000);
-}
+// ── HERO FADE-IN KEYFRAME (inline) ───────────
+const ks = document.createElement('style');
+ks.textContent = '@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}';
+document.head.appendChild(ks);
 </script>
 </body>
 </html>
