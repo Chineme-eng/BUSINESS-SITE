@@ -15,7 +15,7 @@
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
-:root{--bg:#09090e;--bg2:#0f0f17;--bg3:#141420;--card:rgba(23,23,34,0.85);--border:rgba(255,255,255,0.07);--accent:#00e5a0;--accent2:#00b87a;--accentl:rgba(0,229,160,0.12);--text:#ededf8;--muted:#7a7a98;--white:#ffffff;--r:14px;--fh:'Syne',sans-serif;--fb:'DM Sans',sans-serif}
+:root{--bg:#09090e;--bg2:#0f0f17;--bg3:#141420;--card:rgba(23,23,34,0.85);--border:rgba(255,255,255,0.07);--accent:#00e5a0;--accent2:#00b87a;--accentl:rgba(0,229,160,0.12);--text:#ededf8;--muted:#8888a8;--white:#ffffff;--r:14px;--fh:'Syne',sans-serif;--fb:'DM Sans',sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--fb);line-height:1.6;font-size:16px;overflow-x:hidden}
@@ -46,7 +46,7 @@ nav.scrolled{background:rgba(9,9,14,0.97)}
 .hero h1{font-family:var(--fh);font-size:clamp(2.6rem,7.5vw,5rem);font-weight:800;line-height:1.05;letter-spacing:-2.5px;color:var(--white);margin-bottom:24px;animation:fadeUp 0.6s 0.1s ease both}
 .hero h1 em{color:var(--accent);font-style:normal}
 .hero h1 .line2{display:block;color:var(--muted);font-weight:700;font-size:0.68em;letter-spacing:-1px;margin-top:8px}
-.hero-sub{font-size:clamp(1rem,2.5vw,1.2rem);color:var(--muted);max-width:540px;margin:0 auto 38px;font-weight:300;line-height:1.7;animation:fadeUp 0.6s 0.2s ease both}
+.hero-sub{font-size:clamp(1rem,2.5vw,1.2rem);color:var(--muted);max-width:540px;margin:0 auto 38px;font-weight:400;line-height:1.75;animation:fadeUp 0.6s 0.2s ease both}
 .hero-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;animation:fadeUp 0.6s 0.3s ease both}
 .btn-primary{background:var(--accent);color:#000;font-family:var(--fb);font-weight:700;font-size:1rem;padding:16px 34px;border-radius:10px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:0 0 40px rgba(0,229,160,0.28);transition:all 0.2s;text-decoration:none}
 .btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 0 60px rgba(0,229,160,0.4)}
@@ -55,7 +55,7 @@ nav.scrolled{background:rgba(9,9,14,0.97)}
 .hero-note{margin-top:22px;font-size:0.82rem;color:var(--muted);animation:fadeUp 0.6s 0.4s ease both;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 16px}
 .hero-note span{color:var(--accent)}
 .scroll-ind{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;animation:fadeUp 0.6s 1s ease both;opacity:0.4}
-.scroll-ind span{font-size:0.67rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.scroll-ind span{font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
 .scroll-line{width:1px;height:40px;background:linear-gradient(var(--accent),transparent);animation:sp 2s infinite}
 @keyframes sp{0%,100%{opacity:0.3}50%{opacity:1}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
@@ -70,9 +70,9 @@ nav.scrolled{background:rgba(9,9,14,0.97)}
 /* SECTIONS */
 section{padding:96px 24px}
 .container{max-width:1100px;margin:0 auto}
-.section-label{font-size:0.73rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.section-label{font-size:0.75rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
 .section-title{font-family:var(--fh);font-size:clamp(1.8rem,4vw,3rem);font-weight:800;letter-spacing:-1.5px;line-height:1.1;color:var(--white);margin-bottom:16px}
-.section-sub{color:var(--muted);font-size:1rem;max-width:500px;font-weight:300;line-height:1.7;margin-bottom:56px}
+.section-sub{color:var(--muted);font-size:1rem;max-width:500px;font-weight:400;line-height:1.75;margin-bottom:56px}
 
 /* VALUE */
 .value-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
@@ -82,7 +82,7 @@ section{padding:96px 24px}
 .value-card:hover::after{opacity:1}
 .vi{width:46px;height:46px;border-radius:12px;background:var(--accentl);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:20px}
 .value-card h3{font-family:var(--fh);font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:10px}
-.value-card p{color:var(--muted);font-size:0.88rem;line-height:1.65}
+.value-card p{color:var(--muted);font-size:0.9rem;line-height:1.7}
 
 /* SERVICES */
 .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
@@ -92,8 +92,8 @@ section{padding:96px 24px}
 .svc-card:hover .svc-bar{transform:scaleX(1)}
 .svc-num{font-family:var(--fh);font-size:2.8rem;font-weight:800;color:rgba(0,229,160,0.1);line-height:1;margin-bottom:14px}
 .svc-card h3{font-family:var(--fh);font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:10px}
-.svc-card p{color:var(--muted);font-size:0.87rem;line-height:1.65;margin-bottom:18px}
-.svc-tag{display:inline-block;background:rgba(0,229,160,0.07);border:1px solid rgba(0,229,160,0.18);color:var(--accent);font-size:0.73rem;padding:3px 12px;border-radius:100px}
+.svc-card p{color:var(--muted);font-size:0.9rem;line-height:1.7;margin-bottom:18px}
+.svc-tag{display:inline-block;background:rgba(0,229,160,0.07);border:1px solid rgba(0,229,160,0.18);color:var(--accent);font-size:0.75rem;padding:3px 12px;border-radius:100px}
 
 /* DEMOS */
 .demos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
@@ -142,7 +142,7 @@ section{padding:96px 24px}
 .m-card{border-radius:8px;padding:12px;border:1px solid rgba(255,255,255,0.08)}
 .m-card-name{font-size:0.76rem;font-weight:600}
 .m-card-price{font-size:0.95rem;font-weight:700;margin-top:3px;color:#fff}
-.m-card-desc{font-size:0.68rem;color:#777;margin-top:2px}
+.m-card-desc{font-size:0.75rem;color:#777;margin-top:2px}
 .m-footer-bar{border-radius:8px;padding:11px;text-align:center;font-size:0.72rem;margin-top:4px}
 
 /* BEFORE/AFTER */
@@ -226,7 +226,7 @@ section{padding:96px 24px}
 .testi-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
 .testi-name{font-weight:600;font-size:0.86rem;color:var(--white)}
 .testi-biz{font-size:0.76rem;color:var(--muted);margin-top:2px}
-.testi-badge{margin-left:auto;background:rgba(0,229,160,0.07);border:1px solid rgba(0,229,160,0.15);color:var(--accent);font-size:0.63rem;padding:3px 8px;border-radius:100px;white-space:nowrap}
+.testi-badge{margin-left:auto;background:rgba(0,229,160,0.07);border:1px solid rgba(0,229,160,0.15);color:var(--accent);font-size:0.72rem;padding:3px 8px;border-radius:100px;white-space:nowrap}
 
 /* ABOUT */
 .about-inner{display:grid;grid-template-columns:1fr 1.3fr;gap:60px;align-items:center}
@@ -315,12 +315,31 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
 .reveal-l{opacity:0;transform:translateX(-26px);transition:opacity 0.65s ease,transform 0.65s ease}
 .reveal-r{opacity:0;transform:translateX(26px);transition:opacity 0.65s ease,transform 0.65s ease}
 .reveal.visible,.reveal-l.visible,.reveal-r.visible{opacity:1;transform:none}
+
+/* ── FOCUS STYLES (keyboard nav) ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.nav-cta:focus-visible,.btn-primary:focus-visible,.btn-ghost:focus-visible,.btn-submit:focus-visible,.price-btn:focus-visible{outline-offset:4px}
+.faq-q:focus-visible{outline:2px solid var(--accent);outline-offset:0;border-radius:12px}
+.modal-close:focus-visible{outline:2px solid var(--accent)}
+
+/* ── SKIP LINK ── */
+.skip-link{position:absolute;top:-100px;left:16px;z-index:9999;background:var(--accent);color:#000;font-weight:700;font-size:0.9rem;padding:10px 20px;border-radius:8px;text-decoration:none;transition:top 0.2s}
+.skip-link:focus{top:16px}
+
+/* ── REDUCE MOTION ── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
+  html{scroll-behavior:auto}
+  .reveal,.reveal-l,.reveal-r{opacity:1;transform:none}
+}
+
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- NAV -->
-<nav id="mainNav">
+<nav id="mainNav" aria-label="Main navigation">
   <a class="nav-logo" href="#">LocalSite<span>Co.</span></a>
   <ul class="nav-links">
     <li><a href="#value">Why Us</a></li>
@@ -332,12 +351,13 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
-  <div class="hero-grid-bg"></div>
+<main id="main-content">
+<section class="hero" id="home" aria-label="Hero">
+  <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+  <div class="hero-grid-bg" aria-hidden="true"></div>
   <div class="hero-inner">
-    <div class="badge"><span class="dot"></span> Websites delivered in 24–72 hours</div>
+    <div class="badge" aria-hidden="true"><span class="dot"></span> Websites delivered in 24–72 hours</div>
     <h1>More Calls.<br><em>More Bookings.</em><span class="line2">Websites That Actually Bring You Customers</span></h1>
     <p class="hero-sub">We build fast, professional websites for local businesses — barbershops, restaurants, salons, and more. Free preview before you pay a cent.</p>
     <div class="hero-actions">
@@ -348,11 +368,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
       <span>✓ Free preview</span><span>✓ No commitment</span><span>✓ Pay only if you love it</span><span>✓ Live in 72 hrs</span>
     </div>
   </div>
-  <div class="scroll-ind"><span>Scroll</span><div class="scroll-line"></div></div>
+  <div class="scroll-ind" aria-hidden="true"><span>Scroll</span><div class="scroll-line"></div></div>
 </section>
 
 <!-- PROOF BAR -->
-<div class="proof-bar">
+<aside class="proof-bar" aria-label="Key benefits">
   <div class="proof-item">⚡ <strong>72-Hour Delivery</strong></div>
   <div class="proof-sep">|</div>
   <div class="proof-item">📱 <strong>Mobile-First Design</strong></div>
@@ -362,10 +382,10 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
   <div class="proof-item">🔒 <strong>Free Preview, Zero Risk</strong></div>
   <div class="proof-sep">|</div>
   <div class="proof-item">🌟 <strong>Local Business Specialists</strong></div>
-</div>
+</aside>
 
 <!-- VALUE -->
-<section id="value" style="background:var(--bg2)">
+<section id="value" aria-label="Why choose us" style="background:var(--bg2)">
   <div class="container">
     <div class="section-label">Why It Works</div>
     <h2 class="section-title">Websites built for<br>one thing: customers</h2>
@@ -380,7 +400,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
 </section>
 
 <!-- SERVICES -->
-<section id="services">
+<section id="services" aria-label="Our services">
   <div class="container">
     <div class="section-label">What We Build</div>
     <h2 class="section-title">Everything a local<br>business needs online</h2>
@@ -395,26 +415,26 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
 </section>
 
 <!-- DEMOS -->
-<section id="demos" style="background:var(--bg2)">
+<section id="demos" aria-label="Sample work" style="background:var(--bg2)">
   <div class="container">
     <div class="section-label">Sample Work</div>
     <h2 class="section-title">Real-world website<br>examples for local businesses</h2>
     <p class="section-sub">Demo projects showing exactly what we build. Your site is fully customized to your brand, city, and customers.</p>
     <div class="demos-grid reveal">
       <div class="demo-card">
-        <div class="demo-preview db">✂️<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><button class="demo-overlay-btn" onclick="openModal('barber')">View Sample Site →</button></div></div>
+        <div class="demo-preview db">✂️<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><button class="demo-overlay-btn" onclick="openModal('barber',this)">View Sample Site →</button></div></div>
         <div class="demo-body"><h3>Barbershop Website</h3><p>Online booking, service menu, gallery, and click-to-call. Everything a shop needs to bring in new clients every day.</p><div class="demo-tags"><span class="demo-tag">Online Booking</span><span class="demo-tag">Gallery</span><span class="demo-tag">Mobile-First</span></div></div>
       </div>
       <div class="demo-card">
-        <div class="demo-preview dr">🍽️<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><button class="demo-overlay-btn" onclick="openModal('resto')">View Sample Site →</button></div></div>
+        <div class="demo-preview dr">🍽️<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><button class="demo-overlay-btn" onclick="openModal('resto',this)">View Sample Site →</button></div></div>
         <div class="demo-body"><h3>Restaurant Website</h3><p>Menu display, hours, reservations link, and map integration. Customers find you, check you out, and show up.</p><div class="demo-tags"><span class="demo-tag">Menu Page</span><span class="demo-tag">Reservations</span><span class="demo-tag">Google Maps</span></div></div>
       </div>
       <div class="demo-card">
-        <div class="demo-preview dc">🧹<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><button class="demo-overlay-btn" onclick="openModal('clean')">View Sample Site →</button></div></div>
+        <div class="demo-preview dc">🧹<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><button class="demo-overlay-btn" onclick="openModal('clean',this)">View Sample Site →</button></div></div>
         <div class="demo-body"><h3>Cleaning Service Website</h3><p>Service list, quote form, trust badges, and testimonials. Builds credibility fast and turns visitors into booked jobs.</p><div class="demo-tags"><span class="demo-tag">Lead Form</span><span class="demo-tag">Services List</span><span class="demo-tag">Trust Signals</span></div></div>
       </div>
       <div class="demo-card">
-        <div class="demo-preview ds">💅<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><button class="demo-overlay-btn" onclick="openModal('salon')">View Sample Site →</button></div></div>
+        <div class="demo-preview ds">💅<div class="demo-stamp">SAMPLE</div><div class="demo-overlay"><button class="demo-overlay-btn" onclick="openModal('salon',this)">View Sample Site →</button></div></div>
         <div class="demo-body"><h3>Hair Salon Website</h3><p>Online booking, service pricing, before/after gallery, and Instagram feed to attract new walk-ins.</p><div class="demo-tags"><span class="demo-tag">Booking Link</span><span class="demo-tag">Pricing Menu</span><span class="demo-tag">Instagram Feed</span></div></div>
       </div>
     </div>
@@ -422,7 +442,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
 </section>
 
 <!-- BEFORE / AFTER -->
-<section id="compare">
+<section id="compare" aria-label="Before and after comparison">
   <div class="container">
     <div style="text-align:center;margin-bottom:52px">
       <div class="section-label">Before vs After</div>
@@ -456,7 +476,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
 </section>
 
 <!-- PROCESS -->
-<section id="process" style="background:var(--bg2)">
+<section id="process" aria-label="How it works" style="background:var(--bg2)">
   <div class="container">
     <div class="section-label">How It Works</div>
     <h2 class="section-title">From zero to live site<br>in 3 simple steps</h2>
@@ -470,7 +490,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
 </section>
 
 <!-- PRICING -->
-<section id="pricing">
+<section id="pricing" aria-label="Pricing">
   <div class="container">
     <div style="text-align:center;margin-bottom:52px">
       <div class="section-label">Simple Pricing</div>
@@ -533,7 +553,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
 </section>
 
 <!-- TESTIMONIALS -->
-<section id="testimonials" style="background:var(--bg2)">
+<section id="testimonials" aria-label="Client testimonials" style="background:var(--bg2)">
   <div class="container">
     <div style="text-align:center;margin-bottom:52px">
       <div class="section-label">Client Results</div>
@@ -560,7 +580,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
 </section>
 
 <!-- ABOUT -->
-<section id="about">
+<section id="about" aria-label="About us">
   <div class="container">
     <div class="about-inner">
       <div class="about-visual reveal-l">
@@ -591,26 +611,26 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
 </section>
 
 <!-- FAQ -->
-<section id="faq" style="background:var(--bg2)">
+<section id="faq" aria-label="Frequently asked questions" style="background:var(--bg2)">
   <div class="container">
     <div style="text-align:center;margin-bottom:52px">
       <div class="section-label">FAQ</div>
       <h2 class="section-title">Common questions<br>answered honestly</h2>
     </div>
     <div class="faq-list reveal">
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Do I need to buy hosting or a domain?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>We can handle everything for you. Hosting starts at $12/month (optional), and domains typically cost $12–$15/year. If you already have a domain, we'll use that. We guide you through every step and make it simple.</p></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">What if I don't like the preview?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>No problem at all. The preview is completely free and there's zero obligation. If you don't love it, you simply don't pay — no questions asked. We'd rather earn your trust than pressure you into anything.</p></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How fast will I actually get my website?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Most sites are delivered within 24–72 hours of you sending us your details. The exact speed depends on how quickly you send content and photos, but we move fast. Premium plan orders are typically done within 24 hours.</p></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Can I update the site myself after it's live?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Yes. We build on platforms that are easy to update, or we can make updates for you for a small fee. Most clients just message us for small changes — we're fast and responsive. Premium plan clients get 30 days of free updates included.</p></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Will my website show up on Google?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>We include basic local SEO setup in all plans — proper titles, meta descriptions, your location, and schema markup so Google knows what you do and where. Google Business Profile setup is available as an add-on.</p></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">What do you need from me to get started?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Just the basics: your business name, what you offer, your location, your phone number, and any photos or logos you have. If you don't have photos, we can work with stock images. The briefing takes about 5 minutes.</p></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Do you offer payment plans?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Yes — for Pro and Premium plans we offer a 50/50 split: half when you approve the preview, half when the site goes live. Just mention it when you fill out the form and we'll set that up for you.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">Do I need to buy hosting or a domain?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>We can handle everything for you. Hosting starts at $12/month (optional), and domains typically cost $12–$15/year. If you already have a domain, we'll use that. We guide you through every step and make it simple.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">What if I don't like the preview?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>No problem at all. The preview is completely free and there's zero obligation. If you don't love it, you simply don't pay — no questions asked. We'd rather earn your trust than pressure you into anything.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">How fast will I actually get my website?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Most sites are delivered within 24–72 hours of you sending us your details. The exact speed depends on how quickly you send content and photos, but we move fast. Premium plan orders are typically done within 24 hours.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">Can I update the site myself after it's live?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Yes. We build on platforms that are easy to update, or we can make updates for you for a small fee. Most clients just message us for small changes — we're fast and responsive. Premium plan clients get 30 days of free updates included.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">Will my website show up on Google?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>We include basic local SEO setup in all plans — proper titles, meta descriptions, your location, and schema markup so Google knows what you do and where. Google Business Profile setup is available as an add-on.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">What do you need from me to get started?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Just the basics: your business name, what you offer, your location, your phone number, and any photos or logos you have. If you don't have photos, we can work with stock images. The briefing takes about 5 minutes.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q-text">Do you offer payment plans?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Yes — for Pro and Premium plans we offer a 50/50 split: half when you approve the preview, half when the site goes live. Just mention it when you fill out the form and we'll set that up for you.</p></div></div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section id="cta">
+<section id="cta" aria-label="Contact and get started">
   <div class="container">
     <div class="cta-badge">🎯 Limited preview slots available this week</div>
     <h2 class="section-title">Ready to get more<br>customers online?</h2>
@@ -620,12 +640,12 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
       <p>Takes 2 minutes. Preview delivered within 24 hours.</p>
       <div class="form-group">
         <div class="form-row">
-          <input type="text"  class="form-input" id="f-name"  placeholder="Your name" autocomplete="name">
-          <input type="tel"   class="form-input" id="f-phone" placeholder="Phone number" autocomplete="tel">
+          <input type="text"  class="form-input" id="f-name" aria-label="Your name" aria-required="true" placeholder="Your name" autocomplete="name">
+          <input type="tel"   class="form-input" id="f-phone" aria-label="Phone number" aria-required="true" placeholder="Phone number" autocomplete="tel">
         </div>
-        <input type="email" class="form-input" id="f-email" placeholder="Email address" autocomplete="email">
-        <input type="text"  class="form-input" id="f-biz"   placeholder="Business name (e.g. Tony's Barbershop)">
-        <select class="form-select" id="f-type">
+        <input type="email" class="form-input" id="f-email" aria-label="Email address" aria-required="true" placeholder="Email address" autocomplete="email">
+        <input type="text"  class="form-input" id="f-biz" aria-label="Business name" aria-required="true" placeholder="Business name (e.g. Tony's Barbershop)">
+        <select class="form-select" id="f-type" aria-label="Business type" aria-required="true">
           <option value="" disabled selected>What type of business? ↓</option>
           <option>Barbershop / Hair Salon</option>
           <option>Restaurant / Café / Food</option>
@@ -648,6 +668,8 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- FOOTER -->
 <footer>
@@ -672,10 +694,10 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
 
 <!-- DEMO MODAL -->
 <div class="modal-bg" id="demoModal" onclick="closeMBg(event)">
-  <div class="modal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-header">
-      <h3 id="modalTitle">Sample Website Preview</h3>
-      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h3 id="modalTitle" tabindex="-1">Sample Website Preview</h3>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close preview">✕</button>
     </div>
     <div class="modal-body">
       <div class="mock-browser">
@@ -694,7 +716,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:34px 24px
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
 <script>
 // ── REVEAL ──
@@ -728,8 +750,14 @@ function scrollToCta(){ document.getElementById('cta').scrollIntoView({behavior:
 function toggleFaq(btn) {
   const item = btn.parentElement;
   const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-  if (!isOpen) item.classList.add('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => {
+    i.classList.remove('open');
+    i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
+  }
 }
 
 // ── MODAL ──
@@ -783,7 +811,7 @@ const demos = {
       <div class="m-hero" style="background:linear-gradient(135deg,#032020,#064040)">
         <div class="m-logo" style="color:#fff">🧹 ClearShine Cleaning</div>
         <div class="m-sub" style="color:#6ee7b7">Residential & Commercial · Fully Insured</div>
-        <span class="m-btn" style="background:#059669">📋 Get a Free Quote</span>
+        <span class="m-btn" style="background:#047857">📋 Get a Free Quote</span>
       </div>
       <div style="font-size:0.78rem;color:#6ee7b7;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">What We Clean</div>
       <div class="m-row" style="grid-template-columns:1fr">
@@ -820,17 +848,34 @@ const demos = {
   }
 };
 
-function openModal(type){
+
+// ── MODAL FOCUS TRAP ──
+function trapFocus(modal) {
+  const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  const first = focusable[0], last = focusable[focusable.length-1];
+  modal.addEventListener('keydown', function handler(e) {
+    if (e.key !== 'Tab') return;
+    if (e.shiftKey) { if (document.activeElement===first){e.preventDefault();last.focus();} }
+    else { if (document.activeElement===last){e.preventDefault();first.focus();} }
+  });
+}
+function openModal(type,triggerEl){
+  _modalTrigger = triggerEl || document.activeElement;
   const d=demos[type];
   document.getElementById('modalTitle').textContent=d.title;
   document.getElementById('mockUrl').textContent=d.url;
   document.getElementById('mockContent').innerHTML=d.html;
   document.getElementById('demoModal').classList.add('open');
   document.body.style.overflow='hidden';
+  const modalEl=document.querySelector('.modal');
+  trapFocus(modalEl);
+  setTimeout(()=>document.getElementById('modalTitle').focus(),100);
 }
+let _modalTrigger = null;
 function closeModal(){
   document.getElementById('demoModal').classList.remove('open');
   document.body.style.overflow='';
+  if (_modalTrigger) { _modalTrigger.focus(); _modalTrigger=null; }
 }
 function closeMBg(e){ if(e.target===document.getElementById('demoModal')) closeModal(); }
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
